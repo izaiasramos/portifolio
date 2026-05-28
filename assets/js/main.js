@@ -72,22 +72,41 @@ if (scrollTopBtn) {
   });
 }
 
-// Form — mostra sucesso, espera 2s para GTM capturar, depois redireciona p/ WhatsApp
+// Form — persiste via Vercel API, dispara eventos GTM, depois redireciona p/ WhatsApp
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
-  contactForm.addEventListener('submit', function (e) {
+  contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const name    = document.getElementById('fname').value.trim();
-    const email   = document.getElementById('femail').value.trim();
-    const subject = document.getElementById('fsubject').value.trim();
-    const msg     = document.getElementById('fmsg').value.trim();
-    const text    = `Olá Izaias! Vim pelo seu portfólio.\n\nNome: ${name}\nEmail: ${email}\nAssunto: ${subject}\n\n${msg}`;
-    const status  = document.getElementById('formStatus');
+    const name     = document.getElementById('fname').value.trim();
+    const email    = document.getElementById('femail').value.trim();
+    const subject  = document.getElementById('fsubject').value.trim();
+    const msg      = document.getElementById('fmsg').value.trim();
+    const honeypot = document.getElementById('fhoneypot').value;
+    const status   = document.getElementById('formStatus');
+    const btn      = this.querySelector('button[type="submit"]');
 
-    status.textContent = '✓ Mensagem registrada! Abrindo WhatsApp em instantes...';
-    status.style.color = '#5eead4';
+    btn.disabled = true;
+    status.textContent = 'Enviando...';
+    status.style.color = 'var(--muted)';
+
+    try {
+      await fetch('https://portifolio-api-iota.vercel.app/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message: msg, honeypot }),
+      });
+    } catch (_) {
+      // falha silenciosa — WhatsApp garante o contato de qualquer forma
+    }
 
     window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: 'lead_form_persisted',
+      event_name: 'lead_form_persisted',
+      'data-section': 'contato',
+      'data-button': 'Submit Formulario',
+      landing_page: window.location.pathname || '/'
+    });
     window.dataLayer.push({
       event: 'form_submit_success',
       event_name: 'form_submit_success',
@@ -96,8 +115,13 @@ if (contactForm) {
       landing_page: window.location.pathname || '/'
     });
 
+    status.textContent = '✓ Mensagem registrada! Abrindo WhatsApp em instantes...';
+    status.style.color = '#5eead4';
+
+    const text = `Olá Izaias! Vim pelo seu portfólio.\n\nNome: ${name}\nEmail: ${email}\nAssunto: ${subject}\n\n${msg}`;
     setTimeout(function () {
       window.open(`https://wa.me/5511998110569?text=${encodeURIComponent(text)}`, '_blank');
+      btn.disabled = false;
     }, 2000);
   });
 }
