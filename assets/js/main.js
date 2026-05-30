@@ -101,13 +101,6 @@ if (contactForm) {
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: 'lead_form_persisted',
-      event_name: 'lead_form_persisted',
-      'data-section': 'contato',
-      'data-button': 'Submit Formulario',
-      landing_page: window.location.pathname || '/'
-    });
-    window.dataLayer.push({
       event: 'form_submit_success',
       event_name: 'form_submit_success',
       'data-section': 'contato',
@@ -180,3 +173,98 @@ if (calendlyWidget) {
     });
   }, true);
 })();
+
+// Lead magnet form (blog posts)
+document.querySelectorAll('.lead-magnet-form').forEach(form => {
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const name = this.querySelector('input[name="name"]').value.trim();
+    const email = this.querySelector('input[name="email"]').value.trim();
+    const whatsapp = this.querySelector('input[name="whatsapp"]')?.value.trim() || '';
+    const honeypot = this.querySelector('input[name="website"]').value;
+    const pdfType = this.dataset.pdfType;
+    const sourcePage = window.location.href;
+    const status = this.querySelector('.lead-magnet-status');
+    const btn = this.querySelector('button[type="submit"]');
+
+    btn.disabled = true;
+    status.textContent = 'Gerando PDF...';
+    status.style.color = 'var(--muted)';
+
+    try {
+      const res = await fetch('https://portifolio-api-iota.vercel.app/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, whatsapp, honeypot, pdfType, sourcePage }),
+      });
+
+      if (!res.ok) throw new Error();
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'lead_magnet_download',
+        event_name: 'lead_magnet_download',
+        'data-section': btn.dataset.section,
+        'data-button': btn.dataset.button,
+        pdf_type: pdfType,
+        landing_page: sourcePage
+      });
+
+      status.textContent = '✓ PDF enviado! Confira seu e-mail (inclusive spam/promoções).';
+      status.style.color = '#5eead4';
+      this.reset();
+    } catch {
+      status.textContent = '✗ Erro ao enviar. Tente novamente ou me chame no WhatsApp.';
+      status.style.color = '#f87171';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+});
+
+// Newsletter form (blog index)
+const newsletterForm = document.querySelector('.newsletter-form');
+if (newsletterForm) {
+  newsletterForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const email = this.querySelector('input[type="email"]').value.trim();
+    const honeypot = this.querySelector('input[name="website"]').value;
+    const status = this.parentElement.querySelector('.newsletter-status');
+    const btn = this.querySelector('button[type="submit"]');
+
+    btn.disabled = true;
+    status.textContent = 'Processando...';
+    status.style.color = 'var(--muted)';
+
+    try {
+      await fetch('https://portifolio-api-iota.vercel.app/api/lead-magnet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          honeypot,
+          pdfType: 'newsletter',
+          sourcePage: window.location.href
+        }),
+      });
+
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        event: 'newsletter_signup',
+        event_name: 'newsletter_signup',
+        'data-section': 'blog-index-newsletter',
+        'data-button': 'Assinar Newsletter',
+        landing_page: window.location.href
+      });
+
+      status.textContent = '✓ Inscrito! Confira seu e-mail.';
+      status.style.color = '#5eead4';
+      this.reset();
+    } catch {
+      status.textContent = '✗ Erro. Tente novamente.';
+      status.style.color = '#f87171';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+}

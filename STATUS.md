@@ -2,7 +2,7 @@
 
 Documento de acompanhamento das melhorias para passar mais autoridade e converter visitantes em clientes (PMEs em geral).
 
-**Última atualização:** 2026-05-27 (Fase 4.1 — GTM `GTM-M8SWJWWD` + GA4 `G-7VTBPHNPE7` testados via Tag Assistant)
+**Última atualização:** 2026-05-29 (Fase 4.2 — 100% concluída com GTM + GA4 configurados)
 
 ---
 
@@ -257,22 +257,40 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🔥 Fase 4.2 — Persistir formulário (CRÍTICO — hoje lead morre se prospect fecha aba)
+### ✅ Fase 4.2 — Persistir formulário (CONCLUÍDA — 2026-05-28)
 
-**Problema:** o submit do formulário em `index.html:954-976` valida, mostra "✓ Mensagem registrada!", e redireciona para WhatsApp **após 2s**. Se o prospect fecha a aba, troca de contexto, ou bloqueia pop-up, o lead **some** — não vai para e-mail, banco, planilha, lugar nenhum.
+**Problema resolvido:** submit do formulário agora persiste o lead via Vercel Serverless antes de abrir o WhatsApp. Zero lead perdido se o prospect fechar a aba.
 
-**Plano:**
-- [ ] Escolher backend de captura (em ordem de simplicidade):
-  - **Web3Forms** (gratuito, manda email direto, sem backend) — recomendação inicial
-  - **Formspree** (free tier 50/mês, painel de leads)
-  - **Google Sheets via Apps Script** (gratuito, dados em planilha)
-  - **Supabase** (free tier, banco de dados real, mais futuro-proof)
-- [ ] Adicionar `fetch()` no submit do form **antes** do redirect WhatsApp — o WhatsApp continua sendo o caminho principal, mas o lead fica salvo
-- [ ] Adicionar honeypot (`<input type="text" name="_honey" style="display:none">`) para anti-spam
-- [ ] Adicionar autoresponder simples ("Recebemos seu contato, retorno em até 24h")
-- [ ] Disparar `event: lead_form_persisted` no dataLayer quando o fetch retorna OK (separar de `form_submit_success` que é o local)
+**Arquitetura implementada:**
+```
+[Form no browser]
+  └─ fetch POST → https://portifolio-api-iota.vercel.app/api/contact
+                        └─ Vercel Serverless Node.js (portifolio-api)
+                              └─ Resend API → izaiasr232@gmail.com
+  └─ dataLayer.push(lead_form_persisted)
+  └─ dataLayer.push(form_submit_success)
+  └─ setTimeout(2s) → window.open WhatsApp
+```
 
-**Impacto esperado:** zero lead perdido. Backup de todos os contatos mesmo se o WhatsApp não abrir.
+**O que foi feito:**
+- [x] Repositório `portifolio-api` criado — `api/contact.js` (Node.js serverless), `package.json` (dep: `resend`), `.gitignore`
+- [x] Endpoint `/api/contact` com: CORS restrito a `izaiasbessa.com.br`, honeypot anti-spam, validação de campos obrigatórios, envio via Resend
+- [x] Deploy na **Vercel** (plano Hobby, repo público no GitHub `izaiasramos/portifolio-api`)
+- [x] Variáveis de ambiente na Vercel: `RESEND_API_KEY` (via integração Resend↔Vercel) + `CONTACT_EMAIL=izaiasr232@gmail.com`
+- [x] Domínio `izaiasbessa.com.br` **verificado no Resend** (DKIM + SPF + MX adicionados no DNS da Locaweb) — emails chegam na caixa principal com remetente `Portfolio Izaias <contato@izaiasbessa.com.br>`
+- [x] Honeypot `#fhoneypot` adicionado em `index.html` (escondido, anti-spam)
+- [x] Submit handler em `assets/js/main.js` reescrito como `async` com `fetch()` — falha silenciosa (WhatsApp garante o contato se a API falhar)
+- [x] Dois eventos GTM disparados no submit: `lead_form_persisted` + `form_submit_success`
+- [x] URL da API atualizada no `main.js`: `https://portifolio-api-iota.vercel.app/api/contact`
+- [x] Testado ponta a ponta: email chegando em `izaiasr232@gmail.com` com remetente do domínio próprio, HTML formatado (Nome / Email / Assunto / Mensagem)
+
+**GTM + GA4 — Concluído (2026-05-28):**
+- [x] Criar trigger + tag GA4 para `form_submit_success` no GTM (Custom Event trigger, GA4 Event tag com parâmetros `data-section` + `data-button`)
+- [x] Marcar `form_submit_success` como conversão no GA4 (Admin → Events → toggle "Mark as conversion")
+- [x] Marcar `lead_whatsapp` como conversão no GA4 (Fase 4.1 — pendência resolvida)
+
+**Repositório da API:** `github.com/izaiasramos/portifolio-api`
+**URL produção:** `https://portifolio-api-iota.vercel.app/api/contact`
 
 ---
 
@@ -379,7 +397,7 @@ Itens que dependem de você (não podem ser feitos por código):
 | # | Fase | Esforço | Impacto | Dependências |
 |---|---|---|---|---|
 | 1 | ~~**4.1** GTM + GA4 + tags `lead_whatsapp`/`interaction` testadas~~ ✅ feito 2026-05-27 — falta marcar `lead_whatsapp` como conversão no GA4 e aguardar 24-48h. Tag `form_submit_success` adiada para junto da 4.2 | 5 min restantes | 🔥🔥🔥 | nenhuma |
-| 2 | **4.2** Persistir formulário | 1-2h | 🔥🔥🔥 | escolher backend |
+| 2 | ~~**4.2** Persistir formulário~~ ✅ feito 2026-05-28 — Vercel Serverless + Resend + domínio verificado | — | 🔥🔥🔥 | — |
 | 3 | **4.3** Lead magnet + email capture | 4-6h | 🔥🔥 | 4.2 (mesmo backend) |
 | 4 | **4.4** Provas sociais reais | 2-3h | 🔥🔥 | autorização de clientes |
 | 5 | **4.5** Revelar cases confidenciais | 3-5h | 🔥🔥 | autorização de clientes |
