@@ -184,7 +184,7 @@ document.querySelectorAll('.lead-magnet-form').forEach(form => {
     const honeypot = this.querySelector('input[name="website"]').value;
     const pdfType = this.dataset.pdfType;
     const sourcePage = window.location.href;
-    const status = this.querySelector('.lead-magnet-status');
+    const status = this.parentElement.querySelector('.lead-magnet-status');
     const btn = this.querySelector('button[type="submit"]');
 
     btn.disabled = true;
