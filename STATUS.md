@@ -1,8 +1,12 @@
+antic didone
+cormorant
+
+
 # Status do Portfolio — Roadmap de Profissionalismo + Captação
 
 Documento de acompanhamento das melhorias para passar mais autoridade e converter visitantes em clientes (PMEs em geral).
 
-**Última atualização:** 2026-05-29 (Fase 4.2 — 100% concluída com GTM + GA4 configurados)
+**Última atualização:** 2026-06-01 (Fase 4.3 — lead magnet 100% em produção e validado; falta só configurar GA4/GTM dos eventos)
 
 ---
 
@@ -294,7 +298,7 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### ✅ Fase 4.3 — Lead magnet + captura de e-mail (CONCLUÍDA — 2026-05-29)
+### ✅ Fase 4.3 — Lead magnet + captura de e-mail (CONCLUÍDA E EM PRODUÇÃO — 2026-06-01)
 
 **Problema resolvido:** tráfego orgânico do blog agora captura e-mail em troca de PDFs de valor. Visitantes que não estão prontos para contratar hoje viram leads persistentes.
 
@@ -341,19 +345,28 @@ Itens que dependem de você (não podem ser feitos por código):
 - Email, Nome (opcional), WhatsApp (opcional), Tipo PDF, Origem URL, IP, User-Agent, Timestamp
 - Armazenado em Neon Postgres (accessible via vercel postgres CLI ou dashboard)
 
-**URLs de produção (após deployment manual Vercel):**
+**URLs de produção:**
 - Endpoint: `https://portifolio-api-iota.vercel.app/api/lead-magnet`
-- GitHub: `github.com/izaiasramos/portifolio-api` (commit local pronto para push)
+- Blob store (público): `hgzza2jsynuq4uyf.public.blob.vercel-storage.com`
 
-**Próximo: Deploy + Configuração GA4**
-- [ ] Fazer push do commit para GitHub (quando tiver network)
-- [ ] Deploy via Vercel CLI: `npx vercel --prod` (requer `vercel login`)
-- [ ] Criar Neon Postgres instance via Vercel dashboard → obter `DATABASE_URL` → adicionar a `.env.local` de produção
-- [ ] Criar tabela SQL no Neon via CLI: `vercel postgres sql "CREATE TABLE leads (...)"`
-- [ ] Configurar `BLOB_READ_WRITE_TOKEN` no Vercel (Vercel Blob integration)
-- [ ] Testar forms nos 2 posts + newsletter → verificar emails chegando + PDFs gerados
+**Deploy + validação ponta a ponta (2026-06-01) — TUDO FUNCIONANDO:**
+- [x] Deploy em produção via `npx vercel --prod` (portfolio-api roda standalone na Vercel; não vai pro git, é gitignored)
+- [x] **Neon Postgres** conectado via integração Vercel — tabela `leads` criada on-demand pelo handler (`initializeTable`)
+- [x] **Vercel Blob store público** criado e conectado (`BLOB_READ_WRITE_TOKEN` em Production)
+- [x] Testado ponta a ponta via curl: OPTIONS=200, brief/checklist/newsletter/honeypot todos passando, PDF público acessível
+- [x] **Form testado no site real** — lead capturado, email recebido corretamente, PDF baixado
 - [ ] Criar trigger + tag GA4 no GTM para `lead_magnet_download` e `newsletter_signup`
 - [ ] Marcar como conversão no GA4 (Admin → Events)
+
+**Bugs resolvidos durante o deploy (4 em cascata, todos disfarçados de "erro de CORS" — a função crashava no load e o browser reportava como CORS):**
+
+| # | Sintoma | Causa raiz | Correção |
+|---|---|---|---|
+| 1 | `ERR_REQUIRE_ESM` | `@react-pdf/renderer` v4 é ESM puro, carregado via `require()` | `import()` dinâmico no handler; templates viraram *factories* que recebem as primitivas |
+| 2 | `SyntaxError: Unexpected token '<'` | Vercel só transpila JSX em `.jsx`, não em `.js` | Templates reescritos com `React.createElement` puro |
+| 3 | `sql(...)` rejeitado | `@neondatabase/serverless` exige tagged-template ou `sql.query()` | Trocadas as 4 chamadas para `sql.query(...)` |
+| 4 | `BlobError: Cannot use public access on a private store` | store estava *private*, código pede `access: 'public'` | criado store **público** novo, reconectado, órfãos deletados |
+| 5 | PDF do brief com texto quebrado/sobreposto ("≡íOBRE", "¡Captar") | Helvetica (fonte padrão) não tem glyphs para emojis nem `□` (U+25A1); fallback sobrepunha a letra seguinte | removidos emojis dos títulos de seção; `□` → `[  ]` (ASCII-safe) |
 
 **Impacto esperado:** começar a construir base de e-mail própria. Mesmo prospect "frio" vira lead persistente — armazenado no banco com WhatsApp para recontato direto.
 
@@ -446,7 +459,7 @@ Itens que dependem de você (não podem ser feitos por código):
 |---|---|---|---|---|
 | 1 | ~~**4.1** GTM + GA4 + tags `lead_whatsapp`/`interaction` testadas~~ ✅ feito 2026-05-27 — falta marcar `lead_whatsapp` como conversão no GA4 e aguardar 24-48h. Tag `form_submit_success` adiada para junto da 4.2 | 5 min restantes | 🔥🔥🔥 | nenhuma |
 | 2 | ~~**4.2** Persistir formulário~~ ✅ feito 2026-05-28 — Vercel Serverless + Resend + domínio verificado | — | 🔥🔥🔥 | — |
-| 3 | **4.3** Lead magnet + email capture | 4-6h | 🔥🔥 | 4.2 (mesmo backend) |
+| 3 | ~~**4.3** Lead magnet + email capture~~ ✅ feito 2026-06-01 — Neon Postgres + @react-pdf/renderer + Vercel Blob + 2 emails Resend, validado em produção. Falta só configurar GA4/GTM dos eventos | 10 min restantes (GA4) | 🔥🔥 | 4.2 (mesmo backend) |
 | 4 | **4.4** Provas sociais reais | 2-3h | 🔥🔥 | autorização de clientes |
 | 5 | **4.5** Revelar cases confidenciais | 3-5h | 🔥🔥 | autorização de clientes |
 | 6 | **4.6** Retargeting (pixels) | 1h | 🔥 | 4.1 ativo |
