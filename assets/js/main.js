@@ -101,8 +101,8 @@ if (contactForm) {
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
-      event: 'form_submit_success',
-      event_name: 'form_submit_success',
+      event: 'contact_form_submitted_to_whatsapp',
+      event_name: 'contact_form_submitted_to_whatsapp',
       'data-section': 'contato',
       'data-button': 'Submit Formulario',
       landing_page: window.location.pathname || '/'
@@ -161,7 +161,7 @@ if (calendlyWidget) {
     if (!dataSection || !dataButton) return;
 
     const href = el.getAttribute('href');
-    const eventName = isWhatsAppLink(href) ? 'lead_whatsapp' : 'interaction';
+    const eventName = isWhatsAppLink(href) ? 'cta_whatsapp_clicked' : 'interaction';
 
     window.dataLayer.push({
       event: eventName,
@@ -202,8 +202,8 @@ document.querySelectorAll('.lead-magnet-form').forEach(form => {
 
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: 'lead_magnet_download',
-        event_name: 'lead_magnet_download',
+        event: 'blog_pdf_form_submitted_success',
+        event_name: 'blog_pdf_form_submitted_success',
         'data-section': btn.dataset.section,
         'data-button': btn.dataset.button,
         pdf_type: pdfType,
@@ -250,8 +250,8 @@ if (newsletterForm) {
 
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({
-        event: 'newsletter_signup',
-        event_name: 'newsletter_signup',
+        event: 'blog_index_newsletter_form_submitted',
+        event_name: 'blog_index_newsletter_form_submitted',
         'data-section': 'blog-index-newsletter',
         'data-button': 'Assinar Newsletter',
         landing_page: window.location.href
