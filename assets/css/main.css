@@ -234,7 +234,43 @@ nav {
   margin-bottom: 36px;
   line-height: 1.7;
 }
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 16px; }
+.hero-wa-intents {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+.hero-wa-label {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-right: 4px;
+}
+.wa-intent-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--ink);
+  font-size: .82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .2s, color .2s, transform .2s;
+}
+.wa-intent-pill:hover {
+  border-color: #25D366;
+  color: #25D366;
+  transform: translateY(-1px);
+}
+.contact-wa-intents {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0 20px;
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -384,8 +420,35 @@ nav {
   transition: border-color .2s, transform .2s;
 }
 .trust-client-card:hover { border-color: var(--accent); transform: translateY(-3px); }
-.trust-client-icon { font-size: 2rem; margin-bottom: 10px; }
-.trust-client-name { font-size: .98rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
+.client-mark {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .78rem;
+  font-weight: 700;
+  font-family: 'Fira Code', monospace;
+  letter-spacing: .04em;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--ink);
+}
+.client-mark--lg { width: 56px; height: 56px; font-size: .85rem; border-radius: 14px; }
+.client-mark--smartfit { border-color: rgba(255,229,0,.35); color: #ffe500; }
+.client-mark--amazonia { border-color: rgba(59,130,246,.35); color: #60a5fa; }
+.client-mark--psi { border-color: rgba(124,106,247,.35); color: var(--accent); }
+.client-mark--robozee { border-color: rgba(34,211,238,.35); color: var(--accent2); }
+.client-mark--admanager { border-color: rgba(168,85,247,.35); color: #a855f7; }
+.trust-client-name { font-size: .98rem; font-weight: 700; color: var(--ink); margin-bottom: 6px; }
+.trust-client-stat {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--accent2);
+  margin-bottom: 6px;
+}
 .trust-client-tag {
   font-size: .76rem;
   color: var(--muted);
@@ -589,12 +652,12 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 12px;
-  font-size: 2.8rem;
   background: linear-gradient(135deg, var(--bg3), var(--bg2));
   border-bottom: 1px solid var(--border);
   position: relative;
   overflow: hidden;
 }
+.project-preview-placeholder .client-mark { margin: 0; position: relative; z-index: 1; }
 .project-preview-placeholder::after {
   content: '';
   position: absolute;
@@ -926,8 +989,45 @@ nav {
   bottom: 28px;
   right: 24px;
   z-index: 150;
-  width: 60px;
-  height: 60px;
+}
+.floating-whatsapp-menu {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 0;
+  min-width: 200px;
+  padding: 12px;
+  border-radius: var(--radius);
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 40px rgba(0,0,0,.35);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.floating-whatsapp-menu[hidden] { display: none; }
+.floating-whatsapp-menu-title {
+  margin: 0 0 4px;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+.floating-whatsapp-menu a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  color: var(--ink);
+  font-size: .85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color .2s, color .2s;
+}
+.floating-whatsapp-menu a:hover {
+  border-color: #25D366;
+  color: #25D366;
 }
 .floating-whatsapp-btn {
   display: flex;
@@ -1102,6 +1202,39 @@ footer {
   color: #25D366;
   letter-spacing: .06em;
   text-transform: uppercase;
+}
+.testimonial-quote {
+  margin: 0;
+  padding: 16px 20px 0;
+  border: none;
+}
+.testimonial-quote p {
+  margin: 0;
+  font-size: .92rem;
+  line-height: 1.55;
+  color: var(--ink);
+  font-style: italic;
+}
+.testimonial-quote p::before { content: '\201C'; color: var(--accent); font-style: normal; }
+.testimonial-quote p::after { content: '\201D'; color: var(--accent); font-style: normal; }
+.testimonial-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 20px 16px;
+}
+.testimonial-metric {
+  font-size: .72rem;
+  color: var(--muted);
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 4px 10px;
+  font-family: 'Fira Code', monospace;
+}
+.testimonial-metric strong {
+  color: var(--accent2);
+  font-weight: 700;
 }
 .testimonial-screenshot {
   width: 100%;

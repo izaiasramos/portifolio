@@ -1,3 +1,65 @@
+// WhatsApp — mensagens segmentadas por tipo de serviço (Fase 4.7)
+(function () {
+  const WA_PHONE = '5511998110569';
+  const WA_MESSAGES = {
+    site: 'Olá Izaias! Quero um site ou landing page profissional (a partir de R$ 450). Vim pelo portfólio e gostaria de um orçamento.',
+    sistema: 'Olá Izaias! Preciso de um sistema web sob medida (dashboard, CRM ou painel). Vim pelo portfólio e quero conversar sobre escopo e prazo.',
+    automacao: 'Olá Izaias! Tenho interesse em automação ou consultoria técnica (APIs, integrações, GTM). Vim pelo portfólio.',
+    geral: 'Olá Izaias! Vim pelo seu portfólio e gostaria de conversar sobre um projeto.',
+    faq: 'Olá Izaias! Li o FAQ do portfólio mas ainda tenho uma dúvida sobre meu projeto.',
+    agenda: 'Olá Izaias! Gostaria de agendar uma conversa de 30 min sobre meu projeto.',
+    blog: 'Olá Izaias! Vim pelo blog do portfólio e quero conversar sobre um projeto.',
+    'blog-preco': 'Olá Izaias! Li o artigo sobre preço de site e quero um orçamento para meu negócio.',
+    'blog-dev': 'Olá Izaias! Li o artigo sobre escolher desenvolvedor e gostaria de uma conversa.',
+    'case-jessica': 'Olá Izaias! Vi o case da Jéssica e quero um site parecido para meu negócio.',
+    'case-bruna': 'Olá Izaias! Vi o case da Bruna e quero um site parecido para meu negócio.',
+  };
+
+  window.buildWaUrl = function (intent) {
+    const text = WA_MESSAGES[intent] || WA_MESSAGES.geral;
+    return `https://wa.me/${WA_PHONE}?text=${encodeURIComponent(text)}`;
+  };
+
+  window.getWaMessage = function (intent) {
+    return WA_MESSAGES[intent] || WA_MESSAGES.geral;
+  };
+
+  window.detectWaIntent = function (subject, msg) {
+    const t = `${subject} ${msg}`.toLowerCase();
+    if (/sistema|crm|dashboard|painel|aplicativo|aplicação/.test(t)) return 'sistema';
+    if (/automa|integra|api|gtm|bot|consult|script/.test(t)) return 'automacao';
+    if (/site|landing|institucional|p[aá]gina|\blp\b/.test(t)) return 'site';
+    return 'geral';
+  };
+
+  document.querySelectorAll('a[data-wa-intent]').forEach(function (link) {
+    link.href = window.buildWaUrl(link.dataset.waIntent);
+  });
+
+  const floatingWa = document.getElementById('floatingWa');
+  const floatingToggle = document.getElementById('floatingWaToggle');
+  const floatingMenu = document.getElementById('floatingWaMenu');
+  if (floatingToggle && floatingMenu) {
+    floatingToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      const open = floatingMenu.hidden;
+      floatingMenu.hidden = !open;
+      floatingToggle.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', function (e) {
+      if (!floatingWa || floatingWa.contains(e.target)) return;
+      floatingMenu.hidden = true;
+      floatingToggle.setAttribute('aria-expanded', 'false');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key !== 'Escape' || floatingMenu.hidden) return;
+      floatingMenu.hidden = true;
+      floatingToggle.setAttribute('aria-expanded', 'false');
+      floatingToggle.focus();
+    });
+  }
+})();
+
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -104,19 +166,23 @@ if (contactForm) {
       // falha silenciosa — WhatsApp garante o contato de qualquer forma
     }
 
+    const intent = typeof detectWaIntent === 'function' ? detectWaIntent(subject, msg) : 'geral';
+
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: 'contact_form_submitted_to_whatsapp',
       event_name: 'contact_form_submitted_to_whatsapp',
       'data-section': 'contato',
       'data-button': 'Submit Formulario',
-      landing_page: window.location.pathname || '/'
+      landing_page: window.location.pathname || '/',
+      wa_intent: intent
     });
 
     status.textContent = '✓ Mensagem registrada! Abrindo WhatsApp em instantes...';
     status.style.color = '#5eead4';
 
-    const text = `Olá Izaias! Vim pelo seu portfólio.\n\nNome: ${name}\nEmail: ${email}\nAssunto: ${subject}\n\n${msg}`;
+    const opener = typeof getWaMessage === 'function' ? getWaMessage(intent) : 'Olá Izaias! Vim pelo seu portfólio.';
+    const text = `${opener}\n\nNome: ${name}\nEmail: ${email}\nAssunto: ${subject}\n\n${msg}`;
     setTimeout(function () {
       window.open(`https://wa.me/5511998110569?text=${encodeURIComponent(text)}`, '_blank');
       btn.disabled = false;
@@ -167,6 +233,7 @@ if (calendlyWidget) {
 
     const href = el.getAttribute('href');
     const eventName = isWhatsAppLink(href) ? 'cta_whatsapp_clicked' : 'interaction';
+    const waIntent = el.getAttribute('data-wa-intent');
 
     window.dataLayer.push({
       event: eventName,
@@ -174,7 +241,8 @@ if (calendlyWidget) {
       'data-section': dataSection,
       'data-button': dataButton,
       element_type: el.tagName.toLowerCase(),
-      landing_page: landingPage
+      landing_page: landingPage,
+      ...(waIntent ? { wa_intent: waIntent } : {})
     });
   }, true);
 })();

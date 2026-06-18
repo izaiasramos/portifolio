@@ -2,7 +2,7 @@
 
 Documento de acompanhamento das melhorias para passar mais autoridade e converter visitantes em clientes (PMEs em geral).
 
-**Última atualização:** 2026-06-16 (autoridade: PageSpeed, trust block LinkedIn/GitHub, copy SEO honesta, cases multi-página)
+**Última atualização:** 2026-06-18 (Fase 4.7 — WhatsApp segmentado por tipo de serviço)
 
 ---
 
@@ -255,7 +255,7 @@ Itens que dependem de você (não podem ser feitos por código):
 - [x] ~~Configurar tags no GTM para todos os eventos de conversão~~ ✅ **feito 2026-06-15** — `cta_whatsapp_clicked`, `interaction`, `contact_form_submitted_to_whatsapp`, `blog_pdf_form_submitted_success`, `blog_index_newsletter_form_submitted` — publicado e validado em produção
 - [x] ~~Conectar GTM ao Google Analytics 4~~ ✅ **feito** — `G-7VTBPHNPE7` via tag "Google Izaias Bessa"
 - [ ] Microsoft Clarity (opcional — heatmaps e session replay)
-- [ ] Submeter `sitemap.xml` no Google Search Console — **6 URLs** (home + 2 cases + blog index + 2 posts), `lastmod` 2026-06-16 na home e cases
+- [x] ~~Submeter `sitemap.xml` no Google Search Console~~ ✅ feito pelo usuário (2026-06-18)
 - [ ] Validar rich results em https://search.google.com/test/rich-results — deve detectar `Person` + `FAQPage` (na home), `CreativeWork` (nos cases) e `Blog` + `BlogPosting` (no blog)
 - [ ] Rodar Lighthouse (mobile + desktop) **em todas as 6 páginas** (home, 2 cases, blog index, 2 posts). Metas: Performance ≥ 90, SEO 100, Best Practices ≥ 95, Acessibilidade ≥ 95
 - [x] ~~Confirmar resultados reais do Lighthouse e atualizar os números nos cases~~ ✅ **feito 2026-06-16** — Bruna 100 mobile, Jéssica 97 desktop + screenshots nos cases
@@ -404,28 +404,30 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🟡 Fase 4.4 — Provas sociais com peso real (PARCIAL — 2026-06-16)
+### ✅ Fase 4.4 — Provas sociais com peso real (CONCLUÍDA — 2026-06-18)
 
 **Feito:**
 - [x] GitHub + LinkedIn como prova verificável no trust block (prints + preview API)
 - [x] Smart Fit e Amazônia Azul com nome real
+- [x] Emojis substituídos por **monogramas** (SF, AA, 2+, RZ, AM) no trust block e cards de projeto
+- [x] **Métricas verificáveis** nos cards de clientes (`trust-client-stat`)
+- [x] Depoimentos enriquecidos: citação literal do WhatsApp + pills de métrica (PageSpeed, SEO, CTAs) — home + cases
 
-**Ainda pendente:**
-- [ ] Trocar emojis dos 4 cards de clientes por logos (quando autorizado)
-- [ ] Números mensuráveis nos depoimentos
-- [ ] Depoimentos em vídeo curto (opcional)
+**Fora do escopo (sem autorização dos clientes):**
+- ~~Logos oficiais~~ (Smart Fit, Amazônia Azul, RoboZe)
+- ~~Depoimentos em vídeo~~
+
+> Monogramas + métricas verificáveis são a solução definitiva para prova social neste portfólio.
 
 ---
 
-### 🟡 Fase 4.5 — Revelar cases restantes (MÉDIO impacto)
+### ⏸️ Fase 4.5 — Revelar cases restantes (FORA DO ESCOPO)
 
-**Status:** Smart Fit e Amazônia Azul **citados nominalmente** no Trust Block e em `#projects` (2026-06-16), sem URLs nem prints internos.
+**Status:** Smart Fit e Amazônia Azul **citados nominalmente** no Trust Block e em `#projects` — suficiente sem case dedicado.
 
-**Ainda pendente (RoboZe, AdManager):**
-- [ ] Pedir autorização formal (RoboZe, AdManager) para liberar cases dedicados com print parcial, stack e 1–2 métricas
-- [ ] Melhorar descrição dos cards que continuarem sem case dedicado
+**Não será feito:** cases dedicados RoboZe / AdManager (requer autorização formal que não é viável).
 
-**Impacto esperado:** mais densidade de prova de execução real.
+**Cards confidenciais** permanecem com descrição honesta + monograma — sem prints internos nem URLs.
 
 ---
 
@@ -446,19 +448,24 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🟢 Fase 4.7 — Segmentação de buyer persona (BAIXO impacto inicial, alta evolução)
+### 🟢 Fase 4.7 — Segmentação de buyer persona (CONCLUÍDA — 2026-06-18)
 
-**Problema:** todos os CTAs mandam para o mesmo número com mensagens genéricas. Quem quer landing page recebe a mesma abordagem de quem quer sistema sob medida.
+**Feito:**
+- [x] 3 mensagens WhatsApp distintas centralizadas em `assets/js/main.js` (`site`, `sistema`, `automacao`) + intents contextuais (`faq`, `agenda`, `blog`, `case-*`, `geral`)
+- [x] Atributo `data-wa-intent` em todos os CTAs WhatsApp — URLs geradas via `buildWaUrl()`
+- [x] Hero e contato com pills segmentadas (Site · Sistema · Automação)
+- [x] Botão flutuante com menu de 3 opções
+- [x] Formulário de contato detecta intent pelo assunto/mensagem e abre WhatsApp com opener segmentado
+- [x] GTM recebe parâmetro `wa_intent` em `cta_whatsapp_clicked` e `contact_form_submitted_to_whatsapp`
 
-**Plano:**
-- [ ] Criar 3 mensagens WhatsApp pré-preenchidas distintas:
-  - "Quero um site/landing" (R$ 1.500–4.000)
-  - "Quero um sistema sob medida" (R$ 12.000+)
-  - "Quero automação/consultoria" (por hora)
-- [ ] Usar `data-section` + `data-button` para segmentar no GTM (já está pronto, só precisa configurar)
-- [ ] Considerar criar 3 mini-landing pages dedicadas (`/sites`, `/sistemas`, `/automacao`) com hero específico e CTAs próprios — só após Fase 4.1-4.3
+**Mensagens principais:**
+| Intent | Mensagem |
+|---|---|
+| `site` | Site/landing (a partir de R$ 450) — orçamento |
+| `sistema` | Sistema sob medida (dashboard, CRM, painel) — escopo e prazo |
+| `automacao` | Automação/consultoria (APIs, integrações, GTM) |
 
-**Impacto esperado:** taxa de conversão por nicho mais alta, mensagem mais relevante.
+> Mini-landing pages (`/sites`, `/sistemas`, `/automacao`) permanecem fora do escopo — pills + mensagens segmentadas bastam.
 
 ---
 
@@ -487,19 +494,22 @@ Itens que dependem de você (não podem ser feitos por código):
 | 1 | ~~**4.1** GTM + GA4 + tags de conversão~~ ✅ feito 2026-06-15 | — | 🔥🔥🔥 | nenhuma |
 | 2 | ~~**4.2** Persistir formulário~~ ✅ feito 2026-05-28 | — | 🔥🔥🔥 | — |
 | 3 | ~~**4.3** Lead magnet + email capture + tracking~~ ✅ feito 2026-06-15 | — | 🔥🔥 | 4.2 (mesmo backend) |
-| 4 | **4.4** Provas sociais reais | parcial ✅ LinkedIn/GitHub | 🔥🔥 | — |
-| 5 | **4.5** Revelar cases confidenciais | 3-5h | 🔥🔥 | autorização de clientes |
+| 4 | ~~**4.4** Provas sociais reais~~ ✅ feito 2026-06-18 | — | 🔥🔥 | — |
+| 5 | ~~**4.5** Cases confidenciais~~ ⏸️ fora do escopo | — | — | sem autorização |
 | 6 | **4.6** Retargeting (pixels) | 1h | 🔥 | 4.1 ativo |
-| 7 | **4.7** Segmentação buyer persona | 2-3h | 🔥 | 4.1 ativo + dados acumulados |
+| 7 | ~~**4.7** Segmentação buyer persona~~ ✅ feito 2026-06-18 | — | 🔥 | 4.1 ativo |
 | 8 | **4.8** Expandir blog (5 posts) | 1-2 semanas | 🔥 (longo prazo) | nenhuma |
 
-**Sequência crítica:** ~~4.1 → 4.2 → 4.3~~ ✅ concluída. Próximo foco: conteúdo e prova social (4.4, 4.5, 4.8).
+**Sequência crítica:** ~~4.1 → 4.2 → 4.3~~ ✅ · ~~4.4~~ ✅ · ~~4.7~~ ✅. **Próximo foco:** **4.8** expandir blog · rich results · Lighthouse. Fases 4.5, logos, vídeos **fora do escopo**.
 
 ---
 
 ## ⏸️ Fora do escopo por enquanto
 
 - **Certificações formais no Trust Block** — card removido; LinkedIn com 3 prints de prova no lugar.
+- **Logos oficiais de clientes** (Smart Fit, Amazônia Azul, RoboZe) — monogramas são a solução definitiva.
+- **Depoimentos em vídeo** — screenshots + citações literais são suficientes.
+- **Cases dedicados RoboZe / AdManager** — projetos confidenciais; cards com descrição honesta bastam.
 
 ---
 
