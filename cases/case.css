@@ -223,7 +223,28 @@
   line-height: 1.4;
 }
 
-/* Testimonial wrapper */
+.case-pagespeed-proof {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.case-pagespeed-proof img {
+  width: 100%;
+  max-width: 560px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  display: block;
+}
+.case-pagespeed-proof figcaption {
+  margin-top: 10px;
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.case-pagespeed-proof a {
+  color: var(--accent2);
+}
+
 .case-testimonial {
   text-align: center;
   display: flex;

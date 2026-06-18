@@ -1,12 +1,68 @@
-antic didone
-cormorant
-
-
 # Status do Portfolio — Roadmap de Profissionalismo + Captação
 
 Documento de acompanhamento das melhorias para passar mais autoridade e converter visitantes em clientes (PMEs em geral).
 
-**Última atualização:** 2026-06-01 (Fase 4.3 — lead magnet 100% em produção e validado; falta só configurar GA4/GTM dos eventos)
+**Última atualização:** 2026-06-16 (autoridade: PageSpeed, trust block LinkedIn/GitHub, copy SEO honesta, cases multi-página)
+
+---
+
+## ✅ Etapa de autoridade + copy — Concluída (2026-06-16)
+
+Refino pós-Fase 4.3 — site pronto para captar e converter; esta rodada focou em **credibilidade verificável** e **expectativas honestas**.
+
+### O que foi feito
+- [x] **PageSpeed nos cases** — Jéssica 97 desktop · Bruna 100 mobile + screenshots em `assets/img/pagespeed-*.png`
+- [x] **Cases reescritos** — home + rotas internas + blog + internal linking (não “página única”)
+- [x] **Copy SEO honesta** — sem promessa de 1ª página; FAQ “Meu site vai aparecer no Google?”
+- [x] **Smart Fit e Amazônia Azul** citados nominalmente (trust block + `#projects`)
+- [x] **About** — foto + citação em 1ª pessoa (substitui vídeo de intro)
+- [x] **Trust block credenciais** — certificações removidas; GitHub (preview API) + 3 prints LinkedIn
+- [x] **Layout trust** — GitHub em cima, LinkedIn embaixo, centralizado; container **1240px**
+- [x] **Tracking GTM/GA4** — eventos renomeados, publicados e validados (Fase 4.1–4.3)
+
+### Imagens adicionadas (`assets/img/`)
+- `pagespeed-ansiedadepsicologa.com.br.png`
+- `pagespeed-brubspsi.com.br.png`
+- `experiencia-linkedin.png`
+- `formacao-academica-linkedin.png`
+- `competencia-linkedin.png`
+
+### Pendências menores desta etapa
+- [ ] PageSpeed **mobile** da Jéssica (opcional — hoje só desktop)
+- [ ] Submeter `sitemap.xml` no Google Search Console (URLs corretas, `lastmod` atualizado em 2026-06-16)
+
+---
+
+## ✅ Tracking & Analytics — Concluído (2026-06-15)
+
+Infraestrutura de medição de conversão **100% operacional** em `izaiasbessa.com.br`.
+
+**Container GTM:** `GTM-M8SWJWWD`  
+**GA4 Measurement ID:** `G-7VTBPHNPE7`
+
+### Eventos ativos (código ↔ GTM ↔ GA4)
+
+| Evento `dataLayer` | Tag GTM | O que mede |
+|---|---|---|
+| `cta_whatsapp_clicked` | `cta_whatsapp_clicked` | Cliques em CTAs WhatsApp |
+| `interaction` | `Interaction` | Demais cliques com `data-section` / `data-button` |
+| `contact_form_submitted_to_whatsapp` | `Submit Form Lead` | Formulário de contato enviado (antes de abrir WhatsApp) |
+| `blog_pdf_form_submitted_success` | `Download PDF no form Blog` | Lead magnet (PDF) nos posts do blog |
+| `blog_index_newsletter_form_submitted` | `Form Submitted na pagina inicial do blog` | Newsletter na listagem do blog |
+
+### O que foi feito nesta etapa final
+- [x] Renomeação dos eventos no `assets/js/main.js` (nomes descritivos substituíram `lead_whatsapp`, `form_submit_success`, `lead_magnet_download`, `newsletter_signup`)
+- [x] Tags e triggers recriados/atualizados no GTM com os novos nomes
+- [x] Container GTM **publicado**
+- [x] Deploy do site com o `main.js` atualizado
+- [x] Validação ponta a ponta via GTM Preview / Tag Assistant — todos os eventos disparando corretamente com parâmetros `data_section`, `data_button`, `landing_page`
+
+### Parâmetros enviados em todos os eventos de conversão
+- `data-section` — seção da página onde o usuário interagiu
+- `data-button` — identificador do botão/link clicado
+- `landing_page` — URL ou pathname de origem
+
+> **Nota:** eventos antigos (`lead_whatsapp`, `form_submit_success`, `lead_magnet_download`, `newsletter_signup`) foram **descontinuados**. Histórico no GA4 anterior a jun/2026 usa os nomes antigos.
 
 ---
 
@@ -19,7 +75,7 @@ Implementado seguindo o mesmo padrão da LP da psicóloga Jéssica.
 - `<noscript>` iframe do GTM logo após `<body>`
 - `dns-prefetch` para `googletagmanager.com`
 - Listener global de cliques que captura `data-section` + `data-button` e dispara `dataLayer.push`:
-  - `event: lead_whatsapp` para links `wa.me/*`
+  - `event: cta_whatsapp_clicked` para links `wa.me/*`
   - `event: interaction` para os demais
 - Atributos `data-section` e `data-button` adicionados em **todos** os CTAs (nav desktop, nav mobile, hero, sobre, projetos, serviços, FAQ, contato, footer, botões flutuantes)
 
@@ -28,7 +84,7 @@ Implementado seguindo o mesmo padrão da LP da psicóloga Jéssica.
 ### 1.2 Formulário de contato — privacidade + tracking
 - Submit mostra mensagem de sucesso visualmente
 - Aguarda **2 segundos** antes de abrir o WhatsApp (delay para GTM capturar o evento via seletor CSS)
-- Push manual de `event: form_submit_success` no `dataLayer`
+- Push manual de `event: contact_form_submitted_to_whatsapp` no `dataLayer`
 - Mantém o redirecionamento para WhatsApp como mecanismo principal (sem backend novo)
 
 ### 1.3 Nova seção Serviços/Pacotes
@@ -44,16 +100,7 @@ Cada card tem:
 - CTA WhatsApp pré-preenchida com o serviço específico
 
 ### 1.4 Nova seção FAQ
-8 perguntas frequentes antes de `#contact`, cobrindo as objeções típicas de PME:
-
-- Quanto tempo leva
-- Quanto custa
-- Quais tecnologias
-- Como funciona o pagamento
-- De quem é o código
-- Hospedagem e domínio
-- Tem contrato
-- Manutenção pós-entrega
+9 perguntas frequentes antes de `#contact`, cobrindo as objeções típicas de PME (inclui **“Meu site vai aparecer no Google? Você garante posição?”** — resposta honesta sobre SEO técnico vs. ranqueamento).
 
 Implementação:
 - `<details>`/`<summary>` nativos — funciona sem JS
@@ -61,7 +108,7 @@ Implementação:
 - CTA WhatsApp ao final ("Não achei minha dúvida")
 
 ### 1.5 SEO técnico
-- `sitemap.xml` na raiz com 5 URLs principais
+- `sitemap.xml` na raiz com **6 URLs** (home, 2 cases, blog index, 2 posts) — `lastmod` home + cases atualizado **2026-06-16**
 - `robots.txt` apontando para o sitemap
 
 ### 1.6 Refinamento de stats
@@ -88,7 +135,7 @@ Outras stats mantidas:
 
 ### 2.2 Páginas dedicadas de case study ✓
 Criadas:
-- `cases/jessica-lopes/index.html` — Landing page de captação
+- `cases/jessica-lopes/index.html` — Site de captação (home + rotas internas + blog)
 - `cases/bruna-bessa/index.html` — Site multi-página + blog
 - `cases/case.css` — estilos compartilhados pelos dois cases (~6KB)
 
@@ -109,28 +156,27 @@ Cards de `#projects` no `index.html` atualizados:
 ### 2.3 Métricas de resultado críveis ✓
 Cada case tem 4 cards de resultado, focando no observável:
 
-- **PageSpeed mobile 90+** (Lighthouse — pode ser comprovado por screenshot)
-- **Indexação < 7 dias** (verificável no Google Search Console)
+- **Performance Lighthouse comprovada** — Jéssica: 97 desktop · Bruna: 100 mobile (screenshots em `assets/img/pagespeed-*.png`)
+- **SEO técnico entregue** (Schema, sitemap, meta) — sem promessa de posição ou indexação rápida no Google
 - **GTM rastreando cliques de WhatsApp** (Jéssica) ou **3+ pontos de conversão por página** (Bruna)
 - **100% mobile-first responsivo**
 
-> ⚠️ **Pendente:** rodar Lighthouse real em ambos os sites e tirar screenshot pra ter o número exato (90, 92, 95...). Os "90+" são placeholder honesto.
+> ✅ **Resolvido em 2026-06-16:** scores reais inseridos nos cases com screenshots do PageSpeed Insights. Falta só rodar mobile da Jéssica se quiser comparar apple-to-apple com a Bruna.
 
 ### 2.4 Trust Block ✓
 Nova `<section id="trust">` entre `#about` e `#projects`, com 2 grids:
 
-**Clientes/projetos** (4 cards anônimos por falta de autorização formal):
-- 🏋️ Cliente institucional · setor fitness/enterprise (Smart Fit anonimizado)
-- ⚓ Projeto institucional público · sistema de votação/governo (Marinha anonimizada)
+**Clientes/projetos** (4 cards):
+- 🏋️ **Smart Fit** · via Wv_todoz · LPs, APIs e tracking (projeto em andamento)
+- ⚓ **Amazônia Azul Tecnologias de Defesa** · sistema de votação · setor defesa
 - 🧠 Psicólogas independentes · 2 sites em produção (Jéssica + Bruna)
 - 🤖 SaaS de captação · RoboZe · responsável principal
 
-**Credenciais** (3 cards):
-- Certificações — placeholder honesto: tags de stack + "Mais em breve" (você preenche depois)
-- GitHub aberto → link para `github.com/izaiasramos`
-- LinkedIn ativo → link para o perfil
+**Credenciais** (layout vertical centralizado — 2026-06-16):
+- **GitHub aberto** (topo) → preview ao vivo via API (`@izaiasramos`, repos públicos) + link
+- **LinkedIn ativo** (abaixo) → 3 prints com labels (Experiência, Formação, Competências) + link perfil completo
 
-> ⚠️ **Pendente:** quando você listar suas certificações reais (Rocketseat, Alura, Origamid, etc), trocar o placeholder do card "Certificações" no `index.html` (procura por `trust-meta-title">Certificações`).
+> ⏸️ **Fora do escopo:** certificações formais (Rocketseat, Alura, etc.) — LinkedIn + GitHub cobrem prova social por enquanto.
 
 ---
 
@@ -187,13 +233,17 @@ Nova `<section id="trust">` entre `#about` e `#projects`, com 2 grids:
 
 ---
 
-## 📌 Fase 3 — Restante (sem bloquear nada)
+## ✅ Fase 3.2 — Concluída (Apresentação pessoal)
 
-### 3.2 Vídeo de apresentação
-- Gravar 60–90 segundos em `.webm`
-- Salvar em `/assets/videos/intro-izaias.webm`
-- Embed em `#hero` ou `#about`
-- Imagem `poster` obrigatória para não impactar LCP
+### 3.2 Foto + texto no about ✓
+- Bloco `about-quote` na seção `#about` — foto existente + texto em 1ª pessoa (substitui vídeo de intro)
+- Sem impacto em LCP (imagem lazy, sem vídeo pesado)
+
+---
+
+## 📌 Fase 3 — Restante
+
+*Nenhum item bloqueante pendente na Fase 3.*
 
 ---
 
@@ -202,13 +252,13 @@ Nova `<section id="trust">` entre `#about` e `#projects`, com 2 grids:
 Itens que dependem de você (não podem ser feitos por código):
 
 - [x] ~~Substituir `GTM-XXXXXXX` pelo ID real do Google Tag Manager~~ ✅ **feito 2026-05-26** — `GTM-M8SWJWWD` em 12 posições
-- [ ] Configurar tags no GTM para receber `event: lead_whatsapp`, `event: interaction` e `event: form_submit_success`
-- [ ] Conectar GTM ao Google Analytics 4 (e Microsoft Clarity, se quiser heatmaps)
-- [ ] Submeter `sitemap.xml` atualizado no Google Search Console — agora com **6 URLs reais** (home + 2 cases + blog index + 2 posts)
+- [x] ~~Configurar tags no GTM para todos os eventos de conversão~~ ✅ **feito 2026-06-15** — `cta_whatsapp_clicked`, `interaction`, `contact_form_submitted_to_whatsapp`, `blog_pdf_form_submitted_success`, `blog_index_newsletter_form_submitted` — publicado e validado em produção
+- [x] ~~Conectar GTM ao Google Analytics 4~~ ✅ **feito** — `G-7VTBPHNPE7` via tag "Google Izaias Bessa"
+- [ ] Microsoft Clarity (opcional — heatmaps e session replay)
+- [ ] Submeter `sitemap.xml` no Google Search Console — **6 URLs** (home + 2 cases + blog index + 2 posts), `lastmod` 2026-06-16 na home e cases
 - [ ] Validar rich results em https://search.google.com/test/rich-results — deve detectar `Person` + `FAQPage` (na home), `CreativeWork` (nos cases) e `Blog` + `BlogPosting` (no blog)
 - [ ] Rodar Lighthouse (mobile + desktop) **em todas as 6 páginas** (home, 2 cases, blog index, 2 posts). Metas: Performance ≥ 90, SEO 100, Best Practices ≥ 95, Acessibilidade ≥ 95
-- [ ] Confirmar resultados reais do Lighthouse e atualizar os números no card de "PageSpeed mobile" dos cases (hoje está "90+" como placeholder honesto)
-- [ ] Trocar o card "Certificações" do Trust Block pelas certificações reais (Rocketseat, Alura, Origamid, etc) — busca por `trust-meta-title">Certificações`
+- [x] ~~Confirmar resultados reais do Lighthouse e atualizar os números nos cases~~ ✅ **feito 2026-06-16** — Bruna 100 mobile, Jéssica 97 desktop + screenshots nos cases
 - [ ] Testar formulário em iPhone Safari e Android Chrome (mensagem de sucesso aparece + WhatsApp abre depois de 2s)
 - [ ] Confirmar que o botão flutuante de WhatsApp não sobrepõe o botão "Voltar ao topo"
 - [ ] Testar navegação **home → case → home** nos 2 cases (links `../../#projects` e CTAs)
@@ -224,40 +274,22 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🔥 Fase 4.1 — Ativar tracking real (QUASE CONCLUÍDA — 2026-05-27)
+### ✅ Fase 4.1 — Ativar tracking real (CONCLUÍDA — 2026-06-15)
 
-**Container GTM:** `GTM-M8SWJWWD`
+**Container GTM:** `GTM-M8SWJWWD`  
 **GA4 Measurement ID:** `G-7VTBPHNPE7`
 
-**✅ O que foi feito (2026-05-26 → 2026-05-27):**
+**✅ O que foi feito (2026-05-26 → 2026-06-15):**
 - [x] Conta GTM criada e container `GTM-M8SWJWWD` ativo
-- [x] Snippet GTM padrão instalado nas **6 páginas** (12 posições — script + noscript):
-  - `index.html`
-  - `cases/jessica-lopes/index.html`
-  - `cases/bruna-bessa/index.html`
-  - `blog/index.html`
-  - `blog/como-escolher-desenvolvedor-pme/index.html`
-  - `blog/site-profissional-quanto-custa/index.html`
-- [x] Snippet padrão do GTM colocado no **fim do `<body>` com `defer`** para minimizar impacto em LCP. `dns-prefetch` mantido no `<head>` em todas as páginas.
-- [x] Validação via grep: zero ocorrências de `GTM-XXXXXXX` no código
+- [x] Snippet GTM padrão instalado nas **6 páginas** (12 posições — script + noscript)
 - [x] **GA4 Configuration tag** criada no GTM (Measurement ID `G-7VTBPHNPE7`)
-- [x] **Trigger customizado `lead_whatsapp`** + tag GA4 "Whatsapp" — testado via Tag Assistant em `izaiasbessa.com.br`, dispara passando `data_section`, `data_button`, `landing_page` corretamente
-- [x] **Trigger customizado `interaction`** + tag GA4 "Interaction" — disparando corretamente
-- [x] Container GTM **publicado** (Submit + Publish)
-- [x] Validação ponta a ponta: Tag Assistant confirma dispatch das 2 tags com payload correto
-
-**🔄 Ainda pendente:**
-- [ ] Marcar `lead_whatsapp` como **conversão** no GA4 (Admin → Events → toggle "Mark as conversion")
-- [ ] Aguardar 24-48h e confirmar que os eventos aparecem em **GA4 → Realtime** e em **Reports → Engagement → Events** com tráfego real
-
-**⏸️ Adiado intencionalmente (será feito junto com Fase 4.2):**
-- Criar trigger + tag GA4 para `form_submit_success` — o formulário de contato vai ser reescrito na Fase 4.2 para persistir leads em backend, então faz mais sentido configurar a tag depois que o form estiver no formato final. Evita retrabalho de criar/refazer a tag duas vezes.
-- Marcar `form_submit_success` como conversão no GA4 — idem, junto da Fase 4.2.
+- [x] Tags GA4 para `cta_whatsapp_clicked` e `interaction` — validadas em produção
+- [x] Renomeação de eventos no código e realinhamento completo GTM ↔ `main.js` (2026-06-15)
+- [x] Container GTM **publicado** após correção de triggers
+- [x] Validação ponta a ponta: Tag Assistant confirma dispatch com payload correto
 
 **🔮 Opcional, fase posterior:**
 - Microsoft Clarity para heatmaps e session replay — adicionar como tag Custom HTML no GTM
-
-**Impacto esperado:** dados reais de conversão chegam no GA4 e alimentam todas as decisões seguintes da Fase 4.
 
 ---
 
@@ -271,8 +303,7 @@ Itens que dependem de você (não podem ser feitos por código):
   └─ fetch POST → https://portifolio-api-iota.vercel.app/api/contact
                         └─ Vercel Serverless Node.js (portifolio-api)
                               └─ Resend API → izaiasr232@gmail.com
-  └─ dataLayer.push(lead_form_persisted)
-  └─ dataLayer.push(form_submit_success)
+  └─ dataLayer.push(contact_form_submitted_to_whatsapp)
   └─ setTimeout(2s) → window.open WhatsApp
 ```
 
@@ -284,14 +315,13 @@ Itens que dependem de você (não podem ser feitos por código):
 - [x] Domínio `izaiasbessa.com.br` **verificado no Resend** (DKIM + SPF + MX adicionados no DNS da Locaweb) — emails chegam na caixa principal com remetente `Portfolio Izaias <contato@izaiasbessa.com.br>`
 - [x] Honeypot `#fhoneypot` adicionado em `index.html` (escondido, anti-spam)
 - [x] Submit handler em `assets/js/main.js` reescrito como `async` com `fetch()` — falha silenciosa (WhatsApp garante o contato se a API falhar)
-- [x] Dois eventos GTM disparados no submit: `lead_form_persisted` + `form_submit_success`
+- [x] Evento GTM no submit: `contact_form_submitted_to_whatsapp`
 - [x] URL da API atualizada no `main.js`: `https://portifolio-api-iota.vercel.app/api/contact`
 - [x] Testado ponta a ponta: email chegando em `izaiasr232@gmail.com` com remetente do domínio próprio, HTML formatado (Nome / Email / Assunto / Mensagem)
 
-**GTM + GA4 — Concluído (2026-05-28):**
-- [x] Criar trigger + tag GA4 para `form_submit_success` no GTM (Custom Event trigger, GA4 Event tag com parâmetros `data-section` + `data-button`)
-- [x] Marcar `form_submit_success` como conversão no GA4 (Admin → Events → toggle "Mark as conversion")
-- [x] Marcar `lead_whatsapp` como conversão no GA4 (Fase 4.1 — pendência resolvida)
+**GTM + GA4 — Concluído (2026-06-15):**
+- [x] Trigger + tag GA4 `Submit Form Lead` para `contact_form_submitted_to_whatsapp`
+- [x] Marcar eventos de conversão no GA4
 
 **Repositório da API:** `github.com/izaiasramos/portifolio-api`
 **URL produção:** `https://portifolio-api-iota.vercel.app/api/contact`
@@ -311,7 +341,7 @@ Itens que dependem de você (não podem ser feitos por código):
                      ├─ Upload PDF to Vercel Blob (30 dias de validade)
                      ├─ Email 1 → izaiasr232@gmail.com (notificação: novo lead + dados + WhatsApp link)
                      └─ Email 2 → lead (confirmação + download link do PDF ou newsletter welcome)
-  └─ dataLayer.push({event: 'lead_magnet_download' ou 'newsletter_signup'})
+  └─ dataLayer.push({event: 'blog_pdf_form_submitted_success' ou 'blog_index_newsletter_form_submitted'})
 ```
 
 **O que foi feito (2026-05-29):**
@@ -331,14 +361,14 @@ Itens que dependem de você (não podem ser feitos por código):
   - Todos com campos: email (obrigatório), name (opcional), whatsapp (opcional), honeypot
 - [x] **Styling adicionado** (`blog/blog.css`): `.lead-magnet-*` e `.newsletter-*` classes (gradiente, card responsivo, formulário)
 - [x] **JavaScript handlers** (`assets/js/main.js`):
-  - Lead magnet forms: submit → fetch → GTM event `lead_magnet_download` → sucesso/erro feedback
-  - Newsletter form: submit → fetch → GTM event `newsletter_signup`
+  - Lead magnet forms: submit → fetch → GTM event `blog_pdf_form_submitted_success` → sucesso/erro feedback
+  - Newsletter form: submit → fetch → GTM event `blog_index_newsletter_form_submitted`
   - Ambos com honeypot anti-spam
 - [x] **Email notifications:**
   - **Admin email** (izaiasr232@gmail.com): lead data + WhatsApp clickable link + PDF link (ou "newsletter") + action suggestions
   - **Lead email (checklist/brief)**: PDF download button + 30-day expiration notice
   - **Lead email (newsletter)**: welcome + link para post popular
-- [x] **GTM events ready:** `lead_magnet_download`, `newsletter_signup` (ambos com data-section, data-button, landing_page)
+- [x] **GTM events:** `blog_pdf_form_submitted_success`, `blog_index_newsletter_form_submitted` (ambos com data-section, data-button, landing_page)
 - [x] **Commit local feito:** portfolio-api + portfolio principal (aguarda network para push)
 
 **Dados capturados:**
@@ -355,8 +385,10 @@ Itens que dependem de você (não podem ser feitos por código):
 - [x] **Vercel Blob store público** criado e conectado (`BLOB_READ_WRITE_TOKEN` em Production)
 - [x] Testado ponta a ponta via curl: OPTIONS=200, brief/checklist/newsletter/honeypot todos passando, PDF público acessível
 - [x] **Form testado no site real** — lead capturado, email recebido corretamente, PDF baixado
-- [ ] Criar trigger + tag GA4 no GTM para `lead_magnet_download` e `newsletter_signup`
-- [ ] Marcar como conversão no GA4 (Admin → Events)
+
+**GTM + GA4 — Concluído (2026-06-15):**
+- [x] Tags GA4 para `blog_pdf_form_submitted_success` e `blog_index_newsletter_form_submitted`
+- [x] Triggers alinhados ao código, container publicado e validado em produção
 
 **Bugs resolvidos durante o deploy (4 em cascata, todos disfarçados de "erro de CORS" — a função crashava no load e o browser reportava como CORS):**
 
@@ -372,31 +404,26 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🟡 Fase 4.4 — Provas sociais com peso real (MÉDIO impacto)
+### 🟡 Fase 4.4 — Provas sociais com peso real (PARCIAL — 2026-06-16)
 
-**Problema:** as provas sociais hoje são genéricas — emojis no lugar de logos reais, depoimentos sem números, "Certificações em breve" é promessa vazia.
+**Feito:**
+- [x] GitHub + LinkedIn como prova verificável no trust block (prints + preview API)
+- [x] Smart Fit e Amazônia Azul com nome real
 
-**Plano:**
-- [ ] Trocar emojis dos 4 cards do Trust Block (`#trust`) por imagens reais (logos quando autorizado, ou silhuetas estilizadas + nome do setor)
-- [ ] Adicionar números mensuráveis nos depoimentos: "+X clientes via site", "Y conversões/mês", "Lighthouse Z"
-- [ ] Substituir card "Certificações — em breve" pelas certificações reais (Rocketseat, Alura, Origamid, etc) ou trocar por outro tipo de credencial (anos, projetos, GitHub stars)
-- [ ] Considerar adicionar 1-2 depoimentos novos em vídeo curto (15-30s) — credibilidade muito maior que texto
-
-**Impacto esperado:** confiança ↑, redução de objeção "será que ele entrega mesmo?"
+**Ainda pendente:**
+- [ ] Trocar emojis dos 4 cards de clientes por logos (quando autorizado)
+- [ ] Números mensuráveis nos depoimentos
+- [ ] Depoimentos em vídeo curto (opcional)
 
 ---
 
-### 🟡 Fase 4.5 — Revelar cases hoje confidenciais (MÉDIO impacto)
+### 🟡 Fase 4.5 — Revelar cases restantes (MÉDIO impacto)
 
-**Problema:** dos 6 projetos mostrados em `#projects`, **4 são "confidenciais"** — sem stack visível, sem resultado quantificado. Reduz a confiança porque parece que faltam cases para mostrar.
+**Status:** Smart Fit e Amazônia Azul **citados nominalmente** no Trust Block e em `#projects` (2026-06-16), sem URLs nem prints internos.
 
-**Plano:**
-- [ ] Pedir autorização formal aos clientes (Smart Fit anonimizado, Marinha, RoboZe) para liberar pelo menos 1-2 casos com:
-  - Print parcial (ou wireframe esquemático respeitando NDA)
-  - Stack usada
-  - 1-2 métricas (PageSpeed, prazo de entrega, % de uptime)
-- [ ] Para os que continuarem confidenciais: melhorar texto descritivo (em vez de "confidencial", contar o **tipo de problema** resolvido sem citar a marca: "Plataforma de gestão para rede com 100+ unidades")
-- [ ] Considerar criar 1-2 cases novos dedicados (mesmo template de Jéssica/Bruna) para os projetos liberados
+**Ainda pendente (RoboZe, AdManager):**
+- [ ] Pedir autorização formal (RoboZe, AdManager) para liberar cases dedicados com print parcial, stack e 1–2 métricas
+- [ ] Melhorar descrição dos cards que continuarem sem case dedicado
 
 **Impacto esperado:** mais densidade de prova de execução real.
 
@@ -457,16 +484,22 @@ Itens que dependem de você (não podem ser feitos por código):
 
 | # | Fase | Esforço | Impacto | Dependências |
 |---|---|---|---|---|
-| 1 | ~~**4.1** GTM + GA4 + tags `lead_whatsapp`/`interaction` testadas~~ ✅ feito 2026-05-27 — falta marcar `lead_whatsapp` como conversão no GA4 e aguardar 24-48h. Tag `form_submit_success` adiada para junto da 4.2 | 5 min restantes | 🔥🔥🔥 | nenhuma |
-| 2 | ~~**4.2** Persistir formulário~~ ✅ feito 2026-05-28 — Vercel Serverless + Resend + domínio verificado | — | 🔥🔥🔥 | — |
-| 3 | ~~**4.3** Lead magnet + email capture~~ ✅ feito 2026-06-01 — Neon Postgres + @react-pdf/renderer + Vercel Blob + 2 emails Resend, validado em produção. Falta só configurar GA4/GTM dos eventos | 10 min restantes (GA4) | 🔥🔥 | 4.2 (mesmo backend) |
-| 4 | **4.4** Provas sociais reais | 2-3h | 🔥🔥 | autorização de clientes |
+| 1 | ~~**4.1** GTM + GA4 + tags de conversão~~ ✅ feito 2026-06-15 | — | 🔥🔥🔥 | nenhuma |
+| 2 | ~~**4.2** Persistir formulário~~ ✅ feito 2026-05-28 | — | 🔥🔥🔥 | — |
+| 3 | ~~**4.3** Lead magnet + email capture + tracking~~ ✅ feito 2026-06-15 | — | 🔥🔥 | 4.2 (mesmo backend) |
+| 4 | **4.4** Provas sociais reais | parcial ✅ LinkedIn/GitHub | 🔥🔥 | — |
 | 5 | **4.5** Revelar cases confidenciais | 3-5h | 🔥🔥 | autorização de clientes |
 | 6 | **4.6** Retargeting (pixels) | 1h | 🔥 | 4.1 ativo |
 | 7 | **4.7** Segmentação buyer persona | 2-3h | 🔥 | 4.1 ativo + dados acumulados |
 | 8 | **4.8** Expandir blog (5 posts) | 1-2 semanas | 🔥 (longo prazo) | nenhuma |
 
-**Sequência crítica:** 4.1 → 4.2 → 4.3 destrava o restante. Tudo o que vem depois usa os dados/backend dessas três fases.
+**Sequência crítica:** ~~4.1 → 4.2 → 4.3~~ ✅ concluída. Próximo foco: conteúdo e prova social (4.4, 4.5, 4.8).
+
+---
+
+## ⏸️ Fora do escopo por enquanto
+
+- **Certificações formais no Trust Block** — card removido; LinkedIn com 3 prints de prova no lugar.
 
 ---
 
@@ -474,15 +507,13 @@ Itens que dependem de você (não podem ser feitos por código):
 
 | Arquivo | Status | Descrição |
 |---|---|---|
-| `index.html` | ✅ atualizado | Hub principal — 7 sections + nav (com link Blog) + footer |
-| `sitemap.xml` | ✅ atualizado | 6 URLs reais (home, 2 cases, blog index, 2 posts) — fragmentos `#` removidos por serem ignorados pelo Google |
-| `robots.txt` | ✅ existente | Aponta para o sitemap |
-| `assets/img/` | ⚪ existente | Foto, depoimentos, favicon |
-| `assets/videos/` | ⚪ existente | Demos de Jéssica e Bruna |
-| `assets/css/main.css` | ✅ novo | CSS extraído + Trust Block (24KB) |
-| `assets/js/main.js` | ✅ novo | JS extraído com guards para múltiplas páginas (5KB) |
+| `sitemap.xml` | ✅ atualizado | 6 URLs · `lastmod` 2026-06-16 (home + cases) |
+| `assets/img/` | ✅ expandido | Foto, depoimentos, PageSpeed, prints LinkedIn |
+| `assets/css/main.css` | ✅ atualizado | Trust block, container 1240px, about-quote |
+| `index.html` | ✅ atualizado | Trust block, FAQ SEO, copy honesta, projetos |
+| `assets/js/main.js` | ✅ atualizado | JS com eventos GTM renomeados + handlers de form/lead magnet |
 | `cases/case.css` | ✅ novo | Estilos compartilhados pelas páginas de case (~6KB) |
-| `cases/jessica-lopes/index.html` | ✅ novo | Case da LP de captação |
+| `cases/jessica-lopes/index.html` | ✅ atualizado | Case — site com home, rotas internas e blog |
 | `cases/bruna-bessa/index.html` | ✅ novo | Case do site multi-página |
 | `blog/index.html` | ✅ novo | Listagem do blog (Schema.org Blog) |
 | `blog/blog.css` | ✅ novo | Estilos compartilhados das páginas do blog (~6KB) |
@@ -493,7 +524,7 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ## 🎯 Estratégia geral
 
-**Objetivo:** equilíbrio entre **autoridade** (case studies, métricas, certificações) e **conversão** (CTAs, FAQ, serviços, agendamento).
+**Objetivo:** equilíbrio entre **autoridade** (case studies, métricas, depoimentos) e **conversão** (CTAs, FAQ, serviços, agendamento, tracking).
 
 **Público-alvo:** PMEs em geral — sem nichar (ainda) em psicologia ou outro segmento.
 

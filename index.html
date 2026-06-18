@@ -104,6 +104,14 @@
       },
       {
         "@type": "Question",
+        "name": "Meu site vai aparecer no Google? Você garante posição?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Entrego SEO técnico (meta tags, Schema.org, sitemap, performance) — a base para o Google indexar e entender seu site. Não garanto posição nos resultados: ranqueamento depende do Google, da concorrência (inclusive quem investe em anúncios), de backlinks, conteúdo contínuo e do esforço do cliente em redes, diretórios e presença digital. Cuido da parte técnica; o resto é trabalho de médio e longo prazo."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Você cuida da hospedagem e do domínio?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -235,7 +243,7 @@
     <div class="container">
       <div class="about-grid reveal">
 
-        <!-- Foto -->
+        <!-- Foto + apresentação -->
         <div class="about-photo">
           <div class="about-avatar">
             <img src="assets/img/minhaFoto.jpeg" alt="Izaias Ramos" loading="lazy">
@@ -244,6 +252,13 @@
             <div class="hero-dot"></div>
             <span>Disponível p/ projetos</span>
           </div>
+          <blockquote class="about-quote">
+            <p>
+              “Desenvolvo sites que carregam rápido, convertem no WhatsApp e chegam com SEO técnico
+              bem feito — prontos para crescer junto com o negócio do cliente.”
+            </p>
+            <cite>— Izaias Ramos</cite>
+          </blockquote>
         </div>
 
         <!-- Texto -->
@@ -316,13 +331,13 @@
       <div class="trust-clients reveal">
         <div class="trust-client-card">
           <div class="trust-client-icon">🏋️</div>
-          <div class="trust-client-name">Cliente institucional</div>
-          <div class="trust-client-tag">Setor fitness · enterprise</div>
+          <div class="trust-client-name">Smart Fit</div>
+          <div class="trust-client-tag">Via Wv_todoz · LPs, APIs e tracking</div>
         </div>
         <div class="trust-client-card">
           <div class="trust-client-icon">⚓</div>
-          <div class="trust-client-name">Projeto institucional público</div>
-          <div class="trust-client-tag">Sistema de votação · governo</div>
+          <div class="trust-client-name">Amazônia Azul Tecnologias de Defesa</div>
+          <div class="trust-client-tag">Sistema de votação · setor defesa</div>
         </div>
         <div class="trust-client-card">
           <div class="trust-client-icon">🧠</div>
@@ -336,28 +351,19 @@
         </div>
       </div>
 
-      <div class="trust-meta-grid reveal">
-        <div class="trust-meta-card">
-          <p class="trust-meta-title">Certificações</p>
-          <p class="trust-meta-desc">
-            Cursos concluídos em desenvolvimento web, JavaScript, Vue.js, Node.js e SEO técnico.
-            <span style="opacity:.7"><br />(em breve, com selos verificáveis das plataformas)</span>
-          </p>
-          <div class="trust-meta-tags">
-            <span class="skill-pill">JavaScript</span>
-            <span class="skill-pill">Vue.js</span>
-            <span class="skill-pill">Node.js</span>
-            <span class="skill-pill">SEO</span>
-            <span class="skill-pill">Mais em breve</span>
-          </div>
-        </div>
-
-        <div class="trust-meta-card">
+      <div class="trust-meta-grid trust-meta-grid--proofs reveal">
+        <div class="trust-meta-card trust-meta-card--github">
           <p class="trust-meta-title">GitHub aberto</p>
           <p class="trust-meta-desc">
-            Código público, commits diários, contribuições visíveis. Vocês podem ver o que e como eu construo antes de
-            fechar.
+            Repositórios públicos e histórico de commits verificável — dá para ver o que e como eu construo antes de fechar.
           </p>
+          <a href="https://github.com/izaiasramos" target="_blank" rel="noopener"
+            class="trust-proof-link trust-proof-link--github" data-section="trust" data-button="GitHub Trust Preview"
+            id="trustGithubLink">
+            <div class="trust-github-preview" id="trustGithubPreview" aria-hidden="true">
+              <span class="trust-github-loading">Carregando perfil…</span>
+            </div>
+          </a>
           <div class="trust-meta-tags">
             <a href="https://github.com/izaiasramos" target="_blank" rel="noopener" class="footer-social-link"
               data-section="trust" data-button="GitHub Trust">
@@ -366,16 +372,44 @@
           </div>
         </div>
 
-        <div class="trust-meta-card">
+        <div class="trust-meta-card trust-meta-card--linkedin">
           <p class="trust-meta-title">LinkedIn ativo</p>
           <p class="trust-meta-desc">
-            Histórico profissional verificável, recomendações de colegas e disponibilidade transparente para novos
-            projetos.
+            Trajetória profissional, formação e competências — verificável no perfil.
           </p>
+          <div class="trust-linkedin-gallery">
+            <figure class="trust-linkedin-shot">
+              <figcaption>Experiência</figcaption>
+              <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
+                class="trust-proof-link" data-section="trust" data-button="LinkedIn Experiencia">
+                <img src="assets/img/experiencia-linkedin.png"
+                  alt="Print da seção Experiência do LinkedIn — Let's Work, Amazônia Azul e Marinha do Brasil"
+                  class="trust-proof-img" loading="lazy" width="560" height="320">
+              </a>
+            </figure>
+            <figure class="trust-linkedin-shot">
+              <figcaption>Formação acadêmica</figcaption>
+              <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
+                class="trust-proof-link" data-section="trust" data-button="LinkedIn Formacao">
+                <img src="assets/img/formacao-academica-linkedin.png"
+                  alt="Print da formação acadêmica no LinkedIn — Estácio, Instituto Master, B7Web e Senai"
+                  class="trust-proof-img" loading="lazy" width="560" height="320">
+              </a>
+            </figure>
+            <figure class="trust-linkedin-shot">
+              <figcaption>Competências</figcaption>
+              <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
+                class="trust-proof-link" data-section="trust" data-button="LinkedIn Competencias">
+                <img src="assets/img/competencia-linkedin.png"
+                  alt="Print das competências no LinkedIn — Vue.js, responsividade, trabalho em equipe e mais"
+                  class="trust-proof-img" loading="lazy" width="560" height="320">
+              </a>
+            </figure>
+          </div>
           <div class="trust-meta-tags">
             <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
               class="footer-social-link" data-section="trust" data-button="LinkedIn Trust">
-              Perfil no LinkedIn →
+              Perfil completo no LinkedIn →
             </a>
           </div>
         </div>
@@ -399,15 +433,16 @@
           </video>
           <div class="project-body">
             <div class="project-tags">
-              <span class="tag">Landing Page</span>
+              <span class="tag">Site multi-página</span>
+              <span class="tag">Blog</span>
               <span class="tag">SEO</span>
               <span class="tag">WhatsApp CTA</span>
             </div>
             <h3 class="project-title">Psicóloga Jéssica Lopes — ansiedadepsicologa.com.br</h3>
             <p class="project-desc">
-              Landing page completa para psicóloga especializada em ansiedade e relacionamentos.
-              Estrutura de funil de conversão com múltiplos CTAs, FAQ de objeções, seção de credenciais,
-              integração direta com WhatsApp e conteúdo orientado a SEO.
+              Site de captação para psicóloga especializada em ansiedade e relacionamentos.
+              Home de conversão com múltiplos CTAs, rotas internas por tema, blog com artigos,
+              internal linking entre páginas, FAQ de objeções e integração direta com WhatsApp.
               Design em laranja/branco com foco em acolhimento e autoridade profissional.
             </p>
             <div class="project-links">
@@ -429,16 +464,17 @@
           </video>
           <div class="project-body">
             <div class="project-tags">
-              <span class="tag">Landing Page</span>
-              <span class="tag">Responsivo</span>
+              <span class="tag">Site multi-página</span>
+              <span class="tag">Blog</span>
               <span class="tag">SEO</span>
+              <span class="tag">Responsivo</span>
             </div>
             <h3 class="project-title">Psicóloga Bruna Bessa — brubspsi.com.br</h3>
             <p class="project-desc">
-              Site profissional para psicóloga infantojuvenil em São Paulo. Atendimento presencial e online,
-              orientação parental e conteúdo educativo integrado. Inclui formulário de contato,
-              mapa do consultório, blog com artigos temáticos e navegação otimizada para mobile.
-              Múltiplos pontos de conversão com WhatsApp e agendamento direto.
+              Site profissional para psicóloga infantojuvenil em São Paulo. Home de conversão,
+              rotas internas por serviço, blog com artigos temáticos e internal linking entre páginas.
+              Formulário de contato, mapa do consultório, navegação mobile-first e múltiplos
+              pontos de conversão com WhatsApp e agendamento direto.
             </p>
             <div class="project-links">
               <a href="cases/bruna-bessa/" class="project-link" data-section="projetos"
@@ -464,12 +500,12 @@
             </div>
             <h3 class="project-title">Smart Fit — Landing Pages</h3>
             <p class="project-desc">
-              Desenvolvimento e manutenção de múltiplas landing pages responsivas para a Smart Fit
-              via Wv_todoz. Integração de APIs para captura de leads, validações robustas de formulários,
-              configuração de rastreamento via GTM + Google Analytics e deploy gerenciado em AWS S3.
+              Desenvolvimento e manutenção contínua de landing pages responsivas para a Smart Fit,
+              alocado via <strong>Wv_todoz</strong>. Integração de APIs, criação de endpoints,
+              validações de formulários, rastreamento via GTM + Google Analytics e deploy em AWS S3.
             </p>
             <div class="project-links">
-              <span class="project-link muted">Projeto confidencial — empresa</span>
+              <span class="project-link muted">Via Wv_todoz · projeto em andamento</span>
             </div>
           </div>
         </div>
@@ -525,14 +561,15 @@
               <span class="tag">JavaScript</span>
               <span class="tag">PHP</span>
             </div>
-            <h3 class="project-title">Amazônia Azul (Marinha do Brasil) — Sistema de Votação</h3>
+            <h3 class="project-title">Amazônia Azul Tecnologias de Defesa — Sistema de Votação</h3>
             <p class="project-desc">
-              Desenvolvimento de sistema de votação para funcionários distribuídos em todo o Brasil
-              para empresa gerenciada pela Marinha do Brasil. Responsável pelo frontend completo
-              com apoio no backend. Entrega bem-sucedida com testes internos aprovados.
+              Sistema de votação para colaboradores distribuídos em todo o Brasil, no setor de
+              tecnologias de defesa. Responsável pelo frontend completo com apoio no backend —
+              formulários, fluxos de votação e interface acessível. Entrega concluída com testes
+              internos aprovados.
             </p>
             <div class="project-links">
-              <span class="project-link muted">Projeto institucional — confidencial</span>
+              <span class="project-link muted">Setor defesa · concluído em 2023</span>
             </div>
           </div>
         </div>
@@ -555,9 +592,9 @@
         <div class="service-card reveal">
           <div class="service-icon">🎯</div>
           <h3 class="service-name">Site Profissional</h3>
-          <div class="service-price">a partir de R$ 1.500</div>
+          <div class="service-price">a partir de R$ 450</div>
           <p class="service-desc">
-            Landing page ou site institucional otimizado para conversão e busca orgânica.
+            Landing page ou site institucional otimizado para conversão, com SEO técnico incluído.
             Ideal para profissionais autônomos e pequenos negócios que precisam de presença digital com credibilidade.
           </p>
           <ul class="service-list">
@@ -885,6 +922,17 @@
             O código é <strong>seu</strong>. Ao final do projeto entrego o repositório completo com toda a documentação
             necessária para que você ou outro desenvolvedor possa dar continuidade. Sem caixas-pretas e sem dependência
             forçada.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Meu site vai aparecer no Google? Você garante posição?</summary>
+          <div class="faq-answer">
+            Entrego <strong>SEO técnico</strong> (meta tags, Schema.org, sitemap, performance) — a base para o Google
+            indexar e entender seu site. <strong>Não garanto posição</strong> nos resultados: ranqueamento depende do
+            Google, da concorrência (inclusive quem investe em anúncios), de <strong>backlinks</strong>, conteúdo contínuo
+            e do esforço do cliente em redes, diretórios e presença digital. Cuido da parte técnica; o resto é trabalho
+            de médio e longo prazo.
           </div>
         </details>
 

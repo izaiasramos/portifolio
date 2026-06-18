@@ -268,3 +268,22 @@ if (newsletterForm) {
     }
   });
 }
+
+// Trust block — preview do GitHub via API pública
+const trustGithubPreview = document.getElementById('trustGithubPreview');
+if (trustGithubPreview) {
+  fetch('https://api.github.com/users/izaiasramos')
+    .then(res => res.ok ? res.json() : Promise.reject())
+    .then(data => {
+      trustGithubPreview.innerHTML =
+        `<img src="${data.avatar_url}" alt="" width="48" height="48" loading="lazy">` +
+        `<div class="trust-github-info">` +
+        `<span class="trust-github-login">@${data.login}</span>` +
+        `<span class="trust-github-stat">${data.public_repos} repositórios públicos</span>` +
+        `</div>`;
+      trustGithubPreview.removeAttribute('aria-hidden');
+    })
+    .catch(() => {
+      trustGithubPreview.closest('.trust-proof-link')?.remove();
+    });
+}
