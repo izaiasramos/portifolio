@@ -21,26 +21,31 @@ document.querySelectorAll('.project-video').forEach(v => videoObserver.observe(v
 const hamburger = document.getElementById('navHamburger');
 const mobileNav = document.getElementById('mobileNav');
 if (hamburger && mobileNav) {
-  hamburger.addEventListener('click', function () {
-    const isOpen = mobileNav.classList.toggle('open');
+  function setMobileNavOpen(isOpen) {
+    mobileNav.classList.toggle('open', isOpen);
     hamburger.classList.toggle('open', isOpen);
-    hamburger.setAttribute('aria-expanded', isOpen);
-    mobileNav.setAttribute('aria-hidden', !isOpen);
+    hamburger.setAttribute('aria-expanded', String(isOpen));
+    hamburger.setAttribute('aria-label', isOpen ? 'Fechar menu' : 'Abrir menu');
+    if (isOpen) {
+      mobileNav.removeAttribute('aria-hidden');
+      mobileNav.removeAttribute('inert');
+    } else {
+      mobileNav.setAttribute('aria-hidden', 'true');
+      mobileNav.setAttribute('inert', '');
+    }
+  }
+
+  hamburger.addEventListener('click', function () {
+    setMobileNavOpen(!mobileNav.classList.contains('open'));
   });
   document.querySelectorAll('.mobile-nav-link, .mobile-nav-cta').forEach(link => {
     link.addEventListener('click', function () {
-      mobileNav.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileNav.setAttribute('aria-hidden', 'true');
+      setMobileNavOpen(false);
     });
   });
   document.addEventListener('click', function (e) {
     if (!mobileNav.contains(e.target) && !hamburger.contains(e.target)) {
-      mobileNav.classList.remove('open');
-      hamburger.classList.remove('open');
-      hamburger.setAttribute('aria-expanded', 'false');
-      mobileNav.setAttribute('aria-hidden', 'true');
+      setMobileNavOpen(false);
     }
   });
 }
