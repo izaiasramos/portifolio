@@ -11,6 +11,11 @@
     blog: 'Olá Izaias! Vim pelo blog do portfólio e quero conversar sobre um projeto.',
     'blog-preco': 'Olá Izaias! Li o artigo sobre preço de site e quero um orçamento para meu negócio.',
     'blog-dev': 'Olá Izaias! Li o artigo sobre escolher desenvolvedor e gostaria de uma conversa.',
+    'blog-sp': 'Olá Izaias! Li o artigo sobre preço de site em São Paulo e quero um orçamento.',
+    'blog-pronto-medida': 'Olá Izaias! Li o artigo site pronto vs sob medida e quero ajuda para decidir.',
+    'blog-sistema-post': 'Olá Izaias! Li o artigo sobre sistema sob medida e quero conversar sobre meu projeto.',
+    'blog-gtm': 'Olá Izaias! Li o artigo sobre GTM e quero ajuda com tracking no meu site.',
+    'blog-dominio': 'Olá Izaias! Li o guia de domínio e hospedagem e tenho dúvidas.',
     'case-jessica': 'Olá Izaias! Vi o case da Jéssica e quero um site parecido para meu negócio.',
     'case-bruna': 'Olá Izaias! Vi o case da Bruna e quero um site parecido para meu negócio.',
   };
@@ -342,21 +347,33 @@ if (newsletterForm) {
   });
 }
 
-// Trust block — preview do GitHub via API pública
+// Trust block — preview do GitHub via API pública (só quando visível)
 const trustGithubPreview = document.getElementById('trustGithubPreview');
 if (trustGithubPreview) {
-  fetch('https://api.github.com/users/izaiasramos')
-    .then(res => res.ok ? res.json() : Promise.reject())
-    .then(data => {
-      trustGithubPreview.innerHTML =
-        `<img src="${data.avatar_url}" alt="" width="48" height="48" loading="lazy">` +
-        `<div class="trust-github-info">` +
-        `<span class="trust-github-login">@${data.login}</span>` +
-        `<span class="trust-github-stat">${data.public_repos} repositórios públicos</span>` +
-        `</div>`;
-      trustGithubPreview.removeAttribute('aria-hidden');
-    })
-    .catch(() => {
-      trustGithubPreview.closest('.trust-proof-link')?.remove();
-    });
+  function loadGithubPreview() {
+    fetch('https://api.github.com/users/izaiasramos')
+      .then(res => res.ok ? res.json() : Promise.reject())
+      .then(data => {
+        const avatarSrc = data.avatar_url.includes('?')
+          ? `${data.avatar_url}&s=96`
+          : `${data.avatar_url}?s=96`;
+        trustGithubPreview.innerHTML =
+          `<img src="${avatarSrc}" alt="" width="48" height="48" loading="lazy" decoding="async">` +
+          `<div class="trust-github-info">` +
+          `<span class="trust-github-login">@${data.login}</span>` +
+          `<span class="trust-github-stat">${data.public_repos} repositórios públicos</span>` +
+          `</div>`;
+        trustGithubPreview.removeAttribute('aria-hidden');
+      })
+      .catch(() => {
+        trustGithubPreview.closest('.trust-proof-link')?.remove();
+      });
+  }
+  const githubObserver = new IntersectionObserver((entries) => {
+    if (entries.some(e => e.isIntersecting)) {
+      githubObserver.disconnect();
+      loadGithubPreview();
+    }
+  }, { rootMargin: '200px' });
+  githubObserver.observe(trustGithubPreview);
 }

@@ -2,7 +2,7 @@
 
 Documento de acompanhamento das melhorias para passar mais autoridade e converter visitantes em clientes (PMEs em geral).
 
-**Última atualização:** 2026-06-18 (Fase 4.7 — WhatsApp segmentado por tipo de serviço)
+**Última atualização:** 2026-06-18 (Fase 4.8 — 5 novos posts + sitemap 11 URLs)
 
 ---
 
@@ -431,20 +431,18 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🟡 Fase 4.6 — Retargeting (MÉDIO impacto, requer investimento em ads)
+### ⏸️ Fase 4.6 — Retargeting (ADIADO — decisão 2026-06-18)
 
-**Problema:** visitante que não converte na primeira visita nunca mais é alcançado. Sem pixel de retargeting, sem remarketing.
+**Conclusão:** GA4 + eventos atuais já medem conversão. Retargeting só vale com **verba de ads** (Meta/Google). Código extra (`gtm-init`, campos `meta_event`) removido — desnecessário.
 
-**Plano:**
-- [ ] Instalar **Meta Pixel** via GTM (custom HTML tag)
-- [ ] Instalar **Google Ads tag** via GTM (caso vá rodar campanhas)
-- [ ] Criar audiências:
-  - "Visitou /cases/* mas não converteu" (warm)
-  - "Leu blog mas não baixou lead magnet" (cold-warm)
-  - "Submeteu form mas não fechou" (hot)
-- [ ] (Opcional, pós-validação) Pequena verba teste de R$ 200-500 para retargetar quem visitou cases
+**Quando retomar:** tráfego estável (50+ visitas/semana) + budget ads R$ 200–500/mês.
 
-**Impacto esperado:** segunda chance de conversão. Sem isso, 95-98% do tráfego é perdido para sempre.
+**Caminho mínimo (só GTM, ~30 min):** ver `docs/gtm-retargeting.md`
+- [ ] Meta Pixel PageView (All Pages) + Lead (trigger `cta_whatsapp_clicked`)
+- [ ] (Opcional) Google tag `AW-XXX` para remarketing
+- [ ] Campanha teste retargeting cases/blog
+
+**Home:** GTM lazy-load mantido — scroll/clique ou **5s** (antes era 15s).
 
 ---
 
@@ -469,21 +467,21 @@ Itens que dependem de você (não podem ser feitos por código):
 
 ---
 
-### 🟢 Fase 4.8 — Expandir blog (BAIXO impacto imediato, alto SEO de longo prazo)
+### ✅ Fase 4.8 — Expandir blog (CONCLUÍDA — 2026-06-18)
 
-**Problema:** apenas 2 posts. Não alimenta SEO long-tail nem nutre lead via conteúdo.
+**Feito:**
+- [x] 5 posts adicionais publicados (7 no total):
+  - `quanto-custa-site-sao-paulo-2026/` — long-tail SP
+  - `site-pronto-vs-sob-medida-pme/` — Wix/WordPress vs sob medida
+  - `sistema-sob-medida-quando-vale-pena/` — site vs sistema
+  - `gtm-google-tag-manager-pme/` — tracking para PME
+  - `dominio-hospedagem-guia-pme/` — Registro.br + hospedagem
+- [x] Cada post: CTA WhatsApp segmentado + lead magnet (checklist ou brief) + 2+ internal links
+- [x] `blog/index.html` atualizado (listagem + Schema.org Blog com 7 posts)
+- [x] `sitemap.xml` atualizado — **11 URLs** (home + 2 cases + blog index + 7 posts)
+- [x] Novos intents WhatsApp em `main.js`
 
-**Plano:**
-- [ ] Escrever 3-5 posts adicionais com foco PME e long-tail:
-  - "Quanto custa um site em [SP/RJ/etc] em 2026"
-  - "Site pronto vs sob medida: qual escolher para PME"
-  - "O que é sistema sob medida e quando vale a pena"
-  - "Como o GTM ajuda PME a vender mais (e por que você precisa dele)"
-  - "Domínio + hospedagem: o guia básico para PME"
-- [ ] Cada post: CTA WhatsApp + lead magnet relacionado + 2-3 internal links
-- [ ] Atualizar `sitemap.xml` a cada post novo
-
-**Impacto esperado:** Google indexa mais variações long-tail, tráfego orgânico cresce nos próximos 3-6 meses.
+**Próximo passo SEO:** reenviar sitemap no Search Console após deploy.
 
 ---
 
@@ -496,11 +494,11 @@ Itens que dependem de você (não podem ser feitos por código):
 | 3 | ~~**4.3** Lead magnet + email capture + tracking~~ ✅ feito 2026-06-15 | — | 🔥🔥 | 4.2 (mesmo backend) |
 | 4 | ~~**4.4** Provas sociais reais~~ ✅ feito 2026-06-18 | — | 🔥🔥 | — |
 | 5 | ~~**4.5** Cases confidenciais~~ ⏸️ fora do escopo | — | — | sem autorização |
-| 6 | **4.6** Retargeting (pixels) | 1h | 🔥 | 4.1 ativo |
+| 6 | **4.6** Retargeting (pixels) | ~1h GTM | 🔥 | 4.1 ativo · código pronto · ver `docs/gtm-retargeting.md` |
 | 7 | ~~**4.7** Segmentação buyer persona~~ ✅ feito 2026-06-18 | — | 🔥 | 4.1 ativo |
-| 8 | **4.8** Expandir blog (5 posts) | 1-2 semanas | 🔥 (longo prazo) | nenhuma |
+| 8 | ~~**4.8** Expandir blog (5 posts)~~ ✅ feito 2026-06-18 | — | 🔥 (longo prazo) | nenhuma |
 
-**Sequência crítica:** ~~4.1 → 4.2 → 4.3~~ ✅ · ~~4.4~~ ✅ · ~~4.7~~ ✅. **Próximo foco:** **4.8** expandir blog · rich results · Lighthouse. Fases 4.5, logos, vídeos **fora do escopo**.
+**Sequência crítica:** ~~4.1 → 4.8~~ ✅ roadmap de captacao concluido. **Em andamento:** 4.6 retargeting (código OK → configurar GTM). **SEO:** rich results + Lighthouse.
 
 ---
 
@@ -517,7 +515,7 @@ Itens que dependem de você (não podem ser feitos por código):
 
 | Arquivo | Status | Descrição |
 |---|---|---|
-| `sitemap.xml` | ✅ atualizado | 6 URLs · `lastmod` 2026-06-16 (home + cases) |
+| `sitemap.xml` | ✅ atualizado | 11 URLs · blog + 5 posts novos (2026-06-18) |
 | `assets/img/` | ✅ expandido | Foto, depoimentos, PageSpeed, prints LinkedIn |
 | `assets/css/main.css` | ✅ atualizado | Trust block, container 1240px, about-quote |
 | `index.html` | ✅ atualizado | Trust block, FAQ SEO, copy honesta, projetos |
@@ -525,10 +523,14 @@ Itens que dependem de você (não podem ser feitos por código):
 | `cases/case.css` | ✅ novo | Estilos compartilhados pelas páginas de case (~6KB) |
 | `cases/jessica-lopes/index.html` | ✅ atualizado | Case — site com home, rotas internas e blog |
 | `cases/bruna-bessa/index.html` | ✅ novo | Case do site multi-página |
-| `blog/index.html` | ✅ novo | Listagem do blog (Schema.org Blog) |
-| `blog/blog.css` | ✅ novo | Estilos compartilhados das páginas do blog (~6KB) |
-| `blog/como-escolher-desenvolvedor-pme/index.html` | ✅ novo | Post 1 — guia para PMEs (~9 min) |
-| `blog/site-profissional-quanto-custa/index.html` | ✅ novo | Post 2 — faixas de preço para PMEs (~11 min) |
+| `blog/index.html` | ✅ atualizado | Listagem com 7 posts + Schema.org Blog |
+| `blog/quanto-custa-site-sao-paulo-2026/index.html` | ✅ novo | Post — preço site SP (~8 min) |
+| `blog/site-pronto-vs-sob-medida-pme/index.html` | ✅ novo | Post — pronto vs sob medida (~8 min) |
+| `blog/sistema-sob-medida-quando-vale-pena/index.html` | ✅ novo | Post — sistema sob medida (~9 min) |
+| `blog/gtm-google-tag-manager-pme/index.html` | ✅ novo | Post — GTM para PME (~7 min) |
+| `blog/dominio-hospedagem-guia-pme/index.html` | ✅ novo | Post — domínio e hospedagem (~7 min) |
+| `blog/como-escolher-desenvolvedor-pme/index.html` | ✅ existente | Post 1 — guia para PMEs (~9 min) |
+| `blog/site-profissional-quanto-custa/index.html` | ✅ existente | Post 2 — faixas de preço (~11 min) |
 
 ---
 

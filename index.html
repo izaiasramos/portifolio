@@ -75,7 +75,7 @@
         "name": "Quanto custa contratar você?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Cada projeto recebe um orçamento personalizado, baseado no escopo, prazo e funcionalidades. Landing pages partem de uma faixa acessível para pequenas empresas; sistemas e automações são orçados sob medida. Para receber um orçamento sem compromisso, basta me chamar no WhatsApp e contar sobre o projeto."
+          "text": "Cada projeto recebe um orçamento personalizado, baseado no escopo, prazo e funcionalidades. Landing pages partem de uma faixa acessível para pequenos negócios; sistemas e automações são orçados sob medida. Para receber um orçamento sem compromisso, basta me chamar no WhatsApp e contar sobre o projeto."
         }
       },
       {
@@ -150,7 +150,48 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" />
   </noscript>
 
-  <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--bg:#0a0a0f;--bg3:#1a1a24;--border:rgba(255,255,255,.08);--ink:#f0f0f5;--muted:#888899;--accent:#7c6af7;--accent2:#5eead4;--accent-glow:rgba(124,106,247,.25)}
+    html{scroll-behavior:smooth}
+    body{background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+    .container{max-width:1240px;margin:0 auto;padding:0 28px}
+    .mono{font-family:'Fira Code',monospace}
+    .tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.06em;padding:3px 10px;border-radius:99px;border:1px solid var(--border);color:var(--muted);background:var(--bg3)}
+    nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,10,15,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px}
+    .nav-logo{font-weight:700;font-size:.95rem;color:var(--ink);text-decoration:none}
+    .nav-logo span{color:var(--accent)}
+    .nav-links{display:flex;gap:28px;list-style:none}
+    .nav-links a{color:var(--muted);text-decoration:none;font-size:.88rem;font-weight:500}
+    .nav-cta{background:var(--accent);color:#fff!important;padding:7px 18px;border-radius:8px;font-size:.85rem!important;font-weight:600!important}
+    .nav-hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:8px}
+    .nav-hamburger span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px}
+    @media(max-width:680px){.nav-links{display:none}.nav-hamburger{display:flex}}
+    .mobile-nav{position:fixed;top:60px;left:0;right:0;background:rgba(10,10,15,.97);border-bottom:1px solid var(--border);z-index:99;max-height:0;overflow:hidden}
+    #hero{min-height:100vh;display:flex;align-items:center;padding-top:60px;position:relative;overflow:hidden}
+    .hero-glow,.hero-glow2{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px)}
+    .hero-glow{width:600px;height:600px;background:var(--accent-glow);top:-100px;right:-150px}
+    .hero-glow2{width:400px;height:400px;background:rgba(94,234,212,.12);filter:blur(80px);bottom:0;left:-100px}
+    .hero-content{margin-top:30px;position:relative;z-index:1;max-width:700px}
+    .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+    .hero-eyebrow span{font-size:.8rem;color:var(--muted);font-family:'Fira Code',monospace}
+    .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+    .hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-.02em}
+    .hero-title .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-desc{font-size:1.1rem;color:var(--muted);max-width:540px;margin-bottom:36px;line-height:1.7}
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+    .hero-wa-intents{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:28px}
+    .hero-wa-label{font-size:.82rem;color:var(--muted);margin-right:4px}
+    .wa-intent-pill{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg3);color:var(--ink);font-size:.82rem;font-weight:600;text-decoration:none}
+    .hero-stack{margin-top:56px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+    .hero-stack-label{font-size:.75rem;color:var(--muted);margin-right:4px}
+    .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;border:none;cursor:pointer}
+    .btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 24px var(--accent-glow)}
+  </style>
+  <link rel="preload" href="assets/css/main.css" as="style" />
+  <link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="assets/css/main.css" /></noscript>
 </head>
 
 <body>
@@ -250,7 +291,11 @@
         <!-- Foto + apresentação -->
         <div class="about-photo">
           <div class="about-avatar">
-            <img src="assets/img/minhaFoto.jpeg" alt="Izaias Ramos" loading="lazy">
+            <picture>
+              <source srcset="assets/img/minhaFoto-320w.webp" type="image/webp" />
+              <img src="assets/img/minhaFoto.jpeg" alt="Izaias Ramos" width="160" height="160" loading="lazy"
+                decoding="async" />
+            </picture>
           </div>
           <div class="about-status">
             <div class="hero-dot"></div>
@@ -390,27 +435,45 @@
               <figcaption>Experiência</figcaption>
               <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
                 class="trust-proof-link" data-section="trust" data-button="LinkedIn Experiencia">
-                <img src="assets/img/experiencia-linkedin.png"
-                  alt="Print da seção Experiência do LinkedIn — Let's Work, Amazônia Azul e Marinha do Brasil"
-                  class="trust-proof-img" loading="lazy" width="560" height="320">
+                <picture>
+                  <source
+                    srcset="assets/img/experiencia-linkedin-480w.webp 480w, assets/img/experiencia-linkedin-768w.webp 768w, assets/img/experiencia-linkedin-1020w.webp 1020w"
+                    sizes="(max-width: 680px) 100vw, 920px"
+                    type="image/webp" />
+                  <img src="assets/img/experiencia-linkedin.png"
+                    alt="Print da seção Experiência do LinkedIn — Let's Work, Amazônia Azul e Marinha do Brasil"
+                    class="trust-proof-img" loading="lazy" width="1020" height="873" decoding="async">
+                </picture>
               </a>
             </figure>
             <figure class="trust-linkedin-shot">
               <figcaption>Formação acadêmica</figcaption>
               <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
                 class="trust-proof-link" data-section="trust" data-button="LinkedIn Formacao">
-                <img src="assets/img/formacao-academica-linkedin.png"
-                  alt="Print da formação acadêmica no LinkedIn — Estácio, Instituto Master, B7Web e Senai"
-                  class="trust-proof-img" loading="lazy" width="560" height="320">
+                <picture>
+                  <source
+                    srcset="assets/img/formacao-academica-linkedin-480w.webp 480w, assets/img/formacao-academica-linkedin-768w.webp 768w, assets/img/formacao-academica-linkedin-1020w.webp 1020w"
+                    sizes="(max-width: 680px) 100vw, 920px"
+                    type="image/webp" />
+                  <img src="assets/img/formacao-academica-linkedin.png"
+                    alt="Print da formação acadêmica no LinkedIn — Estácio, Instituto Master, B7Web e Senai"
+                    class="trust-proof-img" loading="lazy" width="1020" height="873" decoding="async">
+                </picture>
               </a>
             </figure>
             <figure class="trust-linkedin-shot">
               <figcaption>Competências</figcaption>
               <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
                 class="trust-proof-link" data-section="trust" data-button="LinkedIn Competencias">
-                <img src="assets/img/competencia-linkedin.png"
-                  alt="Print das competências no LinkedIn — Vue.js, responsividade, trabalho em equipe e mais"
-                  class="trust-proof-img" loading="lazy" width="560" height="320">
+                <picture>
+                  <source
+                    srcset="assets/img/competencia-linkedin-480w.webp 480w, assets/img/competencia-linkedin-768w.webp 768w, assets/img/competencia-linkedin-1020w.webp 1020w"
+                    sizes="(max-width: 680px) 100vw, 920px"
+                    type="image/webp" />
+                  <img src="assets/img/competencia-linkedin.png"
+                    alt="Print das competências no LinkedIn — Vue.js, responsividade, trabalho em equipe e mais"
+                    class="trust-proof-img" loading="lazy" width="1020" height="873" decoding="async">
+                </picture>
               </a>
             </figure>
           </div>
@@ -600,7 +663,7 @@
       <div class="reveal">
         <p class="tag accent" style="margin-bottom:12px">Como posso te ajudar</p>
         <h2 class="section-title">Serviços e pacotes</h2>
-        <p class="section-sub">Soluções pensadas para pequenas e médias empresas que precisam de presença digital sólida
+        <p class="section-sub">Soluções pensadas para pequenos negócios que precisam de presença digital sólida
           e processos automatizados.</p>
       </div>
       <div class="services-grid">
@@ -854,8 +917,11 @@
             <span class="testimonial-metric"><strong>100</strong> SEO Lighthouse</span>
             <span class="testimonial-metric"><strong>Multi-página</strong> + blog</span>
           </div>
-          <img src="assets/img/elogio-jessica.png" alt="Elogio da Jéssica Lopes no WhatsApp"
-            class="testimonial-screenshot" loading="lazy">
+          <picture>
+            <source srcset="assets/img/elogio-jessica-628w.webp" type="image/webp" />
+            <img src="assets/img/elogio-jessica.png" alt="Elogio da Jéssica Lopes no WhatsApp"
+              class="testimonial-screenshot" loading="lazy" width="628" height="127" decoding="async">
+          </picture>
           <div class="testimonial-footer">
             <div class="testimonial-avatar">JL</div>
             <div>
@@ -878,8 +944,11 @@
             <span class="testimonial-metric"><strong>100</strong> SEO Lighthouse</span>
             <span class="testimonial-metric"><strong>3+</strong> CTAs por página</span>
           </div>
-          <img src="assets/img/elogio-bruna.png" alt="Elogio da Bruna Bessa no WhatsApp" class="testimonial-screenshot"
-            loading="lazy">
+          <picture>
+            <source srcset="assets/img/elogio-bruna-628w.webp" type="image/webp" />
+            <img src="assets/img/elogio-bruna.png" alt="Elogio da Bruna Bessa no WhatsApp"
+              class="testimonial-screenshot" loading="lazy" width="628" height="127" decoding="async">
+          </picture>
           <div class="testimonial-footer">
             <div class="testimonial-avatar">BB</div>
             <div>
@@ -919,7 +988,7 @@
           <summary>Quanto custa contratar você?</summary>
           <div class="faq-answer">
             Cada projeto recebe um orçamento personalizado, baseado no escopo, prazo e funcionalidades.
-            Landing pages partem de uma faixa acessível para pequenas empresas; sistemas e automações são orçados sob
+            Landing pages partem de uma faixa acessível para pequenos negócios; sistemas e automações são orçados sob
             medida.
             Para receber um orçamento sem compromisso, basta me chamar no WhatsApp e contar sobre o projeto.
           </div>
@@ -1193,17 +1262,30 @@
     </button>
   </div>
 
-  <!-- Google Tag Manager -->
-  <script defer>(function (w, d, s, l, i) {
-      w[l] = w[l] || []; w[l].push({
-        'gtm.start':
-          new Date().getTime(), event: 'gtm.js'
-      }); var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-M8SWJWWD');</script>
-  <!-- End Google Tag Manager -->
-
+  <!-- Google Tag Manager — carrega após interação ou 5s (protege Core Web Vitals) -->
+  <script>
+    (function () {
+      var loaded = false;
+      function loadGTM() {
+        if (loaded) return;
+        loaded = true;
+        (function (w, d, s, l, i) {
+          w[l] = w[l] || [];
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+          var f = d.getElementsByTagName(s)[0], j = d.createElement(s);
+          j.async = true;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i;
+          f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-M8SWJWWD');
+      }
+      ['scroll', 'touchstart', 'keydown', 'click'].forEach(function (e) {
+        window.addEventListener(e, loadGTM, { passive: true, once: true });
+      });
+      window.addEventListener('load', function () {
+        setTimeout(loadGTM, 5000);
+      });
+    })();
+  </script>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8SWJWWD" height="0" width="0"

@@ -18,7 +18,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
@@ -533,7 +533,9 @@ nav {
 .trust-proof-img {
   display: block;
   width: 100%;
+  max-width: 1020px;
   height: auto;
+  margin-inline: auto;
 }
 .trust-proof-link--github {
   margin-top: 0;
@@ -973,7 +975,7 @@ nav {
   border-radius: 8px;
   padding: 11px 14px;
   color: var(--ink);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   font-size: .92rem;
   outline: none;
   transition: border-color .2s;

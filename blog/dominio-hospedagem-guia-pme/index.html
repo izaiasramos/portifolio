@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Domínio + hospedagem: guia básico para quem vai ter site | Izaias Ramos</title>
+  <meta name="description" content="Registro.br, .com.br, hospedagem compartilhada vs Vercel — o que registrar, quanto custa, no seu nome ou no do dev, e erros que prendem o site." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Izaias Ramos" />
+  <link rel="canonical" href="https://www.izaiasbessa.com.br/blog/dominio-hospedagem-guia-pme/" />
+  <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg" />
+  <link rel="shortcut icon" href="../../assets/favicon.svg" />
+  <link rel="apple-touch-icon" href="../../assets/favicon.svg" />
+  <meta name="theme-color" content="#0a0a0f" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Domínio + hospedagem: guia básico para quem vai ter site" />
+  <meta property="og:description" content="Registro.br, hospedagem e SSL — guia prático para pequenos negócios." />
+  <meta property="og:url" content="https://www.izaiasbessa.com.br/blog/dominio-hospedagem-guia-pme/" />
+  <meta property="og:site_name" content="Izaias Ramos Dev" />
+  <meta property="og:image" content="https://github.com/izaiasramos.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Domínio e hospedagem: guia prático" />
+  <meta name="twitter:description" content="Guia básico: Registro.br, custos e armadilhas." />
+  <meta name="twitter:image" content="https://github.com/izaiasramos.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Domínio + hospedagem: o guia básico para quem vai ter site",
+    "description": "Registro.br, hospedagem e SSL — o que registrar, quanto custa e erros comuns.",
+    "url": "https://www.izaiasbessa.com.br/blog/dominio-hospedagem-guia-pme/",
+    "datePublished": "2026-06-18",
+    "dateModified": "2026-06-18",
+    "inLanguage": "pt-BR",
+    "author": { "@type": "Person", "name": "Izaias Ramos", "url": "https://www.izaiasbessa.com.br/" },
+    "publisher": { "@type": "Person", "name": "Izaias Ramos", "url": "https://www.izaiasbessa.com.br/" },
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://www.izaiasbessa.com.br/blog/dominio-hospedagem-guia-pme/" },
+    "image": "https://github.com/izaiasramos.png"
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" /></noscript>
+  <link rel="stylesheet" href="../../assets/css/main.css" />
+  <link rel="stylesheet" href="../blog.css" />
+</head>
+<body>
+
+<nav>
+  <div class="container nav-inner">
+    <a href="../../" class="nav-logo">izaias<span>.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="../" data-section="post-dominio-nav" data-button="Voltar Blog">← Blog</a></li>
+      <li><a href="../../#services" data-section="post-dominio-nav" data-button="Servicos">Serviços</a></li>
+      <li><a href="https://wa.me/5511998110569" target="_blank" rel="noopener" data-wa-intent="blog-dominio"
+             class="nav-cta" data-section="post-dominio-nav" data-button="WhatsApp Topo">WhatsApp</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="blog-hero">
+  <div class="container">
+    <a href="../" class="blog-back" data-section="post-dominio-hero" data-button="Voltar Blog">← Voltar ao blog</a>
+    <p class="tag accent" style="margin-bottom:12px">Infra · Sites</p>
+    <h1>Domínio + hospedagem: o guia básico para quem vai ter site</h1>
+    <p class="blog-hero-sub">
+      Registro.br, Hostinger, Vercel, SSL, DNS — parece técnico demais até o dia em que o dev some e você descobre que o domínio está no CPF dele. Este guia evita a armadilha mais cara do site.
+    </p>
+  </div>
+</section>
+
+<section class="blog-post">
+  <div class="container">
+    <div class="blog-post-body">
+      <p class="blog-post-meta">
+        <span>18 de junho, 2026</span>
+        <span class="dot"></span>
+        <span>7 min de leitura</span>
+        <span class="dot"></span>
+        <span>Por Izaias Ramos</span>
+      </p>
+
+      <p>
+        Domínio e hospedagem quase nunca aparecem no orçamento do site — e deveriam.
+        São <strong>seus</strong> ativos digitais, como a chave do consultório.
+        Este guia cobre o básico que todo negócio precisa saber antes de publicar qualquer página.
+      </p>
+
+      <h2>Domínio: o endereço do site</h2>
+
+      <p>
+        <strong>.com.br</strong> — registrado no Registro.br, ~R$ 40/ano. Transmite presença no Brasil; exige CPF/CNPJ.
+        <strong>.com</strong> — registradores internacionais (Namecheap, Cloudflare), ~US$ 10–15/ano. Comum para marcas globais.
+      </p>
+
+      <p><strong>Regra de ouro:</strong> registre no <em>seu</em> CPF ou CNPJ. Nunca no do desenvolvedor ou agência.
+        Se eles “facilitam”, peça transferência imediata ou registre você mesmo e só passe acesso DNS.</p>
+
+      <h2>Hospedagem: onde o site “mora”</h2>
+
+      <p>Opções comuns para pequenos negócios:</p>
+
+      <ul>
+        <li><strong>Compartilhada (Hostinger, Locaweb, UOL Host)</strong> — R$ 15–40/mês. WordPress, sites estáticos, e-mail corporativo básico.</li>
+        <li><strong>Vercel / Netlify</strong> — plano free ou ~US$ 20/mês. Sites estáticos e JAMstack, deploy automático, SSL grátis. Ótimo para sites sob medida em HTML/JS.</li>
+        <li><strong>AWS S3 + CloudFront</strong> — landing corporativa em escala (ex.: projetos via agência). Custo variável, mais técnico.</li>
+      </ul>
+
+      <p>
+        Detalhes de preço por tipo de site estão no artigo
+        <a href="../site-profissional-quanto-custa/">Quanto custa um site profissional</a> (seção “o que não está incluso”).
+      </p>
+
+      <h2>SSL (cadeado HTTPS)</h2>
+
+      <p>
+        Obrigatório em 2026 — Google penaliza site sem HTTPS; navegador marca como “não seguro”.
+        Hospedagens modernas incluem <strong>Let's Encrypt grátis</strong>.
+        Se cobram extra por SSL, desconfie da infraestrutura.
+      </p>
+
+      <h2>DNS: ligar domínio à hospedagem</h2>
+
+      <p>
+        Depois de registrar o domínio, você aponta DNS (registro A, CNAME ou nameservers) para onde o site está hospedado.
+        O dev configura isso uma vez — mas <strong>você mantém acesso ao painel do Registro.br</strong> para não depender de ninguém.
+      </p>
+
+      <div class="blog-callout">
+        <p><strong>Checklist antes de pagar o site:</strong> domínio no meu nome? Hospedagem no meu cartão? Tenho login e senha dos dois painéis?</p>
+      </div>
+
+      <h2>Erros que prendem quem tem site</h2>
+
+      <ul>
+        <li><strong>“Site incluso com hospedagem nossa”</strong> — mensalidade alta; sair = perder site.</li>
+        <li><strong>Domínio no nome do dev</strong> — ele some, você não renova, domínio expira.</li>
+        <li><strong>E-mail @seudominio preso na hospedagem</strong> — migrar e-mail dói; planeje antes.</li>
+        <li><strong>Não renovar domínio</strong> — site some do ar; concorrente pode registrar depois.</li>
+      </ul>
+
+      <h2>Quanto custa por ano (ordem de grandeza)</h2>
+
+      <ul>
+        <li>Domínio .com.br: ~R$ 40</li>
+        <li>Hospedagem básica: R$ 180–480/ano</li>
+        <li>SSL: R$ 0 (incluso)</li>
+        <li>E-mail profissional (Google Workspace): ~R$ 35/usuário/mês — opcional</li>
+      </ul>
+
+      <p>
+        Total mínimo realista: <strong>~R$ 220/ano</strong> além do custo de construir o site.
+        Compare com faixas em
+        <a href="../quanto-custa-site-sao-paulo-2026/">Quanto custa site em São Paulo</a>.
+      </p>
+
+      <h2>Resumo</h2>
+
+      <p>
+        Domínio e hospedagem são seus — não do dev.
+        Registre .com.br no Registro.br, escolha hospedagem compatível com o tipo de site, exija SSL grátis e guarde logins.
+        Isso custa pouco por ano e evita refazer tudo quando o relacionamento com o profissional muda.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section class="blog-related">
+  <div class="container">
+    <h3>Continue lendo</h3>
+    <div class="blog-related-grid">
+      <a href="../site-profissional-quanto-custa/" class="blog-card" data-section="post-dominio-related" data-button="Post Preco">
+        <div class="blog-card-meta"><span>22 de maio, 2026</span><span class="dot"></span><span>11 min</span></div>
+        <h2>Quanto custa um site profissional?</h2>
+        <p>O que entra no orçamento e o que fica à parte (domínio, hospedagem).</p>
+        <span class="blog-card-cta">Ler artigo →</span>
+      </a>
+      <a href="../site-pronto-vs-sob-medida-pme/" class="blog-card" data-section="post-dominio-related" data-button="Post Pronto">
+        <div class="blog-card-meta"><span>18 de junho, 2026</span><span class="dot"></span><span>8 min</span></div>
+        <h2>Site pronto vs sob medida</h2>
+        <p>Construtores incluem hospedagem — entenda o trade-off.</p>
+        <span class="blog-card-cta">Ler artigo →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="lead-magnet">
+  <div class="container">
+    <div class="lead-magnet-inner">
+      <div class="lead-magnet-icon">📋</div>
+      <h3 class="lead-magnet-title">Baixe o modelo de brief em PDF</h3>
+      <p class="lead-magnet-desc">Inclui checklist de domínio, hospedagem e entregáveis para pedir orçamento completo.</p>
+      <form class="lead-magnet-form" data-pdf-type="brief">
+        <input type="text" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="text" name="name" placeholder="Seu nome (opcional)" class="lead-magnet-input" />
+        <input type="email" name="email" placeholder="Seu melhor e-mail" class="lead-magnet-input" required />
+        <input type="tel" name="whatsapp" placeholder="WhatsApp (opcional)" class="lead-magnet-input" />
+        <button type="submit" class="btn btn-primary" data-section="post-dominio-lead-magnet" data-button="Baixar Brief PDF">Enviar PDF</button>
+      </form>
+      <p class="lead-magnet-status"></p>
+      <p class="lead-magnet-privacy">Sem spam. Seu e-mail fica seguro comigo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="blog-cta">
+  <div class="container">
+    <div class="blog-cta-inner">
+      <h2>Dúvida sobre domínio ou hospedagem?</h2>
+      <p>Te oriento no Registro.br, DNS e escolha de plano — ou configuro tudo na entrega do site.</p>
+      <div class="blog-cta-actions">
+        <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" data-wa-intent="blog-dominio"
+           class="btn btn-primary" data-section="post-dominio-cta-final" data-button="WhatsApp Final">Falar no WhatsApp</a>
+        <a href="../../#services" class="btn btn-ghost" data-section="post-dominio-cta-final" data-button="Ver Servicos">Ver pacotes de serviços</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom">
+      <span>© 2026 Izaias Ramos. Todos os direitos reservados.</span>
+      <a href="../../">izaiasbessa.com.br</a>
+    </div>
+  </div>
+</footer>
+
+<script>(function (w, d, s, l, i) {
+  w[l] = w[l] || []; w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+  var f = d.getElementsByTagName(s)[0], j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : '';
+  j.async = true; j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+})(window, document, 'script', 'dataLayer', 'GTM-M8SWJWWD');</script>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8SWJWWD" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script src="../../assets/js/main.js" defer></script>
+</body>
+</html>
