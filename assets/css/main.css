@@ -43,6 +43,12 @@ body {
 
 section { padding: 76px 0; }
 
+/* Below-fold: browser skips layout/paint until scroll (melhora SI no mobile) */
+#about, #trust, #projects, #services, #agenda, #skills, #experience, #testimonials, #faq, #contact {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
 @media(max-width:720px) {
   section { padding: 44px 0; }
 }
