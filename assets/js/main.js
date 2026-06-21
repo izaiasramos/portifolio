@@ -378,7 +378,7 @@ if (trustGithubPreview) {
           ? `${data.avatar_url}&s=96`
           : `${data.avatar_url}?s=96`;
         trustGithubPreview.innerHTML =
-          `<img src="${avatarSrc}" alt="" width="48" height="48" loading="lazy" decoding="async">` +
+          `<img src="${avatarSrc}" alt="Avatar de Izaias Ramos no GitHub" width="48" height="48" loading="lazy" decoding="async">` +
           `<div class="trust-github-info">` +
           `<span class="trust-github-login">@${data.login}</span>` +
           `<span class="trust-github-stat">${data.public_repos} repositórios públicos</span>` +
@@ -386,7 +386,8 @@ if (trustGithubPreview) {
         trustGithubPreview.removeAttribute('aria-hidden');
       })
       .catch(() => {
-        trustGithubPreview.closest('.trust-proof-link')?.remove();
+        trustGithubPreview.innerHTML =
+          '<span class="trust-github-fallback">@izaiasramos — ver perfil no GitHub</span>';
       });
   }
   const githubObserver = new IntersectionObserver((entries) => {
