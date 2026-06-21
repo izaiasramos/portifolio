@@ -520,6 +520,8 @@ Itens que dependem de você (não podem ser feitos por código):
 | `assets/css/main.css` | ✅ atualizado | Trust block, container 1240px, about-quote |
 | `index.html` | ✅ atualizado | Trust block, FAQ SEO, copy honesta, projetos |
 | `assets/js/main.js` | ✅ atualizado | JS com eventos GTM renomeados + handlers de form/lead magnet |
+| `docs/performance.md` | ✅ novo | Guia de otimizações PageSpeed + regras para IA não regredir |
+| `.cursor/rules/performance.mdc` | ✅ novo | Regra Cursor — considerar impacto em velocidade em toda alteração LP |
 | `cases/case.css` | ✅ novo | Estilos compartilhados pelas páginas de case (~6KB) |
 | `cases/jessica-lopes/index.html` | ✅ atualizado | Case — site com home, rotas internas e blog |
 | `cases/bruna-bessa/index.html` | ✅ novo | Case do site multi-página |

@@ -1,0 +1,51 @@
+---
+description: Performance e PageSpeed — não desfazer otimizações da LP sem melhorar métricas
+globs: index.html,assets/**/*,blog/**/*,cases/**/*,.htaccess
+alwaysApply: false
+---
+
+# Performance — Portfólio LP
+
+**Meta mobile:** Lighthouse Performance ≥ 90. Detalhes completos: `docs/performance.md`.
+
+## Antes de alterar
+
+Toda mudança em HTML/CSS/JS/imagens da home ou assets compartilhados deve responder:
+- Aumenta peso no caminho crítico (hero)?
+- Adiciona render-blocking (CSS/JS/fontes síncronos)?
+- Imagens novas têm WebP + `srcset`/`sizes` + `width`/`height`?
+
+Se sim → mitigar ou documentar trade-off.
+
+## Não desfazer (salvo melhoria comprovada)
+
+| Padrão | Onde |
+|--------|------|
+| Critical CSS inline no `<head>` | `index.html` |
+| `main.css` via `media="print"` + `onload` | `index.html` |
+| Fontes Google non-blocking (`preload` + `onload`) | todas as páginas |
+| GTM **lazy** na home (scroll/clique ou **5s**) | `index.html` — **não** snippet síncrono no head |
+| `main.js` com **`defer`** | fim do `<body>` |
+| `content-visibility: auto` below-fold | `main.css` — seções `#about`…`#contact` |
+| `.htaccess` gzip + cache | raiz — deploy FTP obrigatório |
+| Vídeos `preload="none"` + IO play/pause | `#projects` + `main.js` |
+| Calendly/GitHub preview lazy | `main.js` |
+
+## Imagens
+
+- Trust LinkedIn: srcset **480/540/768/1020w** + `sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), 872px"`
+- Below-fold: `loading="lazy"`, decorativas grandes: `fetchpriority="low"`
+- **Nunca** `sizes="100vw"` se imagem está dentro de card (~872px max)
+- Gerar WebP: `cwebp -q 82 -resize WIDTH 0 -m 6 orig.png -o nome-WIDTHw.webp`
+
+## Proibido na home sem revisão de PSI
+
+- GTM/Analytics síncrono no `<head>`
+- Frameworks ou libs JS pesadas
+- `preload="auto"` em vídeos
+- PNG/JPEG full-size sem `<picture>`/srcset
+- Remover gzip (`.htaccess`)
+
+## Após mudanças relevantes
+
+Rodar PageSpeed mobile: https://pagespeed.web.dev/analysis?url=https://www.izaiasbessa.com.br/

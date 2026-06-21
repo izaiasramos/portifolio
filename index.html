@@ -173,7 +173,12 @@
     .hero-glow,.hero-glow2{position:absolute;border-radius:50%;pointer-events:none;filter:blur(100px)}
     .hero-glow{width:600px;height:600px;background:var(--accent-glow);top:-100px;right:-150px}
     .hero-glow2{width:400px;height:400px;background:rgba(94,234,212,.12);filter:blur(80px);bottom:0;left:-100px}
-    .hero-content{margin-top:30px;position:relative;z-index:1;max-width:700px}
+    .hero-content{margin-top:30px;position:relative;z-index:1}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:40px;align-items:start;position:relative;z-index:1}
+    .hero-form{margin-top:30px;background:rgba(26,26,36,.85);border:1px solid var(--border);border-radius:16px;padding:24px}
+    .hero-form-title{font-size:1.05rem;font-weight:700;margin-bottom:4px}
+    .hero-form-sub{font-size:.82rem;color:var(--muted);margin-bottom:18px}
+    @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero-form{margin-top:0}}
     .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px}
     .hero-eyebrow span{font-size:.8rem;color:var(--muted);font-family:'Fira Code',monospace}
     .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
@@ -225,6 +230,7 @@
         <li><a href="#services" data-section="header" data-button="Servicos">Serviços</a></li>
         <li><a href="#agenda" data-section="header" data-button="Agenda">Agenda</a></li>
         <li><a href="#skills" data-section="header" data-button="Skills">Skills</a></li>
+        <li><a href="#experience" data-section="header" data-button="Experiencia">Experiência</a></li>
         <li><a href="#faq" data-section="header" data-button="FAQ">FAQ</a></li>
         <li><a href="blog/" data-section="header" data-button="Blog">Blog</a></li>
         <li><a href="#contact" class="nav-cta" data-section="header" data-button="Contato">Contato</a></li>
@@ -241,44 +247,75 @@
     <div class="hero-glow"></div>
     <div class="hero-glow2"></div>
     <div class="container">
-      <div class="hero-content">
-        <div class="hero-eyebrow">
-          <div class="hero-dot"></div>
-          <span>Disponível para novos projetos</span>
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="hero-eyebrow">
+            <div class="hero-dot"></div>
+            <span>Disponível para novos projetos</span>
+          </div>
+          <h1 class="hero-title">
+            Transformo ideias em<br>
+            <span class="highlight">soluções digitais</span><br>
+            que funcionam.
+          </h1>
+          <p class="hero-desc">
+            Desenvolvedor Fullstack com foco em sites profissionais, sistemas web e automações.
+            Baseado em São Paulo — entrego com agilidade, código limpo e resultado real.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary" data-section="hero" data-button="Ver Projetos">
+              <span>Ver projetos</span>
+              <span>↓</span>
+            </a>
+          </div>
+          <div class="hero-wa-intents">
+            <span class="hero-wa-label">Falar no WhatsApp sobre:</span>
+            <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
+              data-wa-intent="site" data-section="hero" data-button="WhatsApp Site">Site profissional</a>
+            <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
+              data-wa-intent="sistema" data-section="hero" data-button="WhatsApp Sistema">Sistema sob medida</a>
+            <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
+              data-wa-intent="automacao" data-section="hero" data-button="WhatsApp Automacao">Automação</a>
+          </div>
+          <div class="hero-stack">
+            <span class="hero-stack-label mono">stack →</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Vue.js</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">AWS</span>
+          </div>
         </div>
-        <h1 class="hero-title">
-          Transformo ideias em<br>
-          <span class="highlight">soluções digitais</span><br>
-          que funcionam.
-        </h1>
-        <p class="hero-desc">
-          Desenvolvedor Fullstack com foco em sites profissionais, sistemas web e automações.
-          Baseado em São Paulo — entrego com agilidade, código limpo e resultado real.
-        </p>
-        <div class="hero-actions">
-          <a href="#projects" class="btn btn-primary" data-section="hero" data-button="Ver Projetos">
-            <span>Ver projetos</span>
-            <span>↓</span>
-          </a>
-        </div>
-        <div class="hero-wa-intents">
-          <span class="hero-wa-label">Falar no WhatsApp sobre:</span>
-          <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
-            data-wa-intent="site" data-section="hero" data-button="WhatsApp Site">Site profissional</a>
-          <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
-            data-wa-intent="sistema" data-section="hero" data-button="WhatsApp Sistema">Sistema sob medida</a>
-          <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
-            data-wa-intent="automacao" data-section="hero" data-button="WhatsApp Automacao">Automação</a>
-        </div>
-        <div class="hero-stack">
-          <span class="hero-stack-label mono">stack →</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">Vue.js</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">AWS</span>
-        </div>
+
+        <form class="contact-form hero-form" id="heroContactForm" data-section="hero" aria-label="Formulário de contato rápido">
+          <p class="hero-form-title">Fale sobre seu projeto</p>
+          <p class="hero-form-sub">Sem scroll — respondo no mesmo dia.</p>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="heroFname">Nome</label>
+              <input type="text" id="heroFname" name="name" placeholder="Seu nome" required autocomplete="name" />
+            </div>
+            <div class="form-field">
+              <label for="heroFemail">Email</label>
+              <input type="email" id="heroFemail" name="email" placeholder="seu@email.com" required autocomplete="email" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="heroFsubject">Assunto</label>
+            <input type="text" id="heroFsubject" name="subject" placeholder="Site, sistema ou automação..." />
+          </div>
+          <div class="form-field">
+            <label for="heroFmsg">Mensagem</label>
+            <textarea id="heroFmsg" name="message" rows="3" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
+          </div>
+          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-section="hero"
+            data-button="Enviar Formulario Hero">
+            Enviar mensagem →
+          </button>
+          <p class="form-status" aria-live="polite"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -1128,31 +1165,31 @@
           </div>
         </div>
 
-        <form class="contact-form reveal" id="contactForm">
+        <form class="contact-form reveal" id="contactForm" data-section="contato" aria-label="Formulário de contato">
           <div class="form-row">
             <div class="form-field">
               <label for="fname">Nome</label>
-              <input type="text" id="fname" placeholder="Seu nome" required />
+              <input type="text" id="fname" name="name" placeholder="Seu nome" required autocomplete="name" />
             </div>
             <div class="form-field">
               <label for="femail">Email</label>
-              <input type="email" id="femail" placeholder="seu@email.com" required />
+              <input type="email" id="femail" name="email" placeholder="seu@email.com" required autocomplete="email" />
             </div>
           </div>
           <div class="form-field">
             <label for="fsubject">Assunto</label>
-            <input type="text" id="fsubject" placeholder="Preciso de um site / sistema / automação..." />
+            <input type="text" id="fsubject" name="subject" placeholder="Preciso de um site / sistema / automação..." />
           </div>
           <div class="form-field">
             <label for="fmsg">Mensagem</label>
-            <textarea id="fmsg" rows="5" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
+            <textarea id="fmsg" name="message" rows="5" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
           </div>
-          <input type="text" id="fhoneypot" name="website" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-section="contato"
             data-button="Enviar Formulario">
             Enviar mensagem →
           </button>
-          <p class="form-status" id="formStatus"></p>
+          <p class="form-status" aria-live="polite"></p>
         </form>
       </div>
     </div>

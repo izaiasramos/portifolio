@@ -197,7 +197,46 @@ nav {
   bottom: 0; left: -100px;
   pointer-events: none;
 }
-.hero-content {     margin-top: 30px; position: relative; z-index: 1; max-width: 700px; }
+.hero-content { margin-top: 30px; position: relative; z-index: 1; }
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  gap: 40px;
+  align-items: start;
+  position: relative;
+  z-index: 1;
+}
+.hero-form {
+  margin-top: 30px;
+  background: rgba(26, 26, 36, .85);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(12px);
+}
+.hero-form-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.hero-form-sub {
+  font-size: .82rem;
+  color: var(--muted);
+  margin-bottom: 18px;
+}
+.hero-form .form-field textarea { min-height: 72px; resize: vertical; }
+.form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+  .hero-form { margin-top: 0; }
+}
 .hero-eyebrow {
   display: flex;
   align-items: center;

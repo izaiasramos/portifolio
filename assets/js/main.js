@@ -145,17 +145,18 @@ if (scrollTopBtn) {
 }
 
 // Form — persiste via Vercel API, dispara eventos GTM, depois redireciona p/ WhatsApp
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-  contactForm.addEventListener('submit', async function (e) {
+document.querySelectorAll('.contact-form').forEach(function (form) {
+  form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    const name     = document.getElementById('fname').value.trim();
-    const email    = document.getElementById('femail').value.trim();
-    const subject  = document.getElementById('fsubject').value.trim();
-    const msg      = document.getElementById('fmsg').value.trim();
-    const honeypot = document.getElementById('fhoneypot').value;
-    const status   = document.getElementById('formStatus');
-    const btn      = this.querySelector('button[type="submit"]');
+    const name     = form.querySelector('[name="name"]')?.value.trim() || '';
+    const email    = form.querySelector('[name="email"]')?.value.trim() || '';
+    const subject  = form.querySelector('[name="subject"]')?.value.trim() || '';
+    const msg      = form.querySelector('[name="message"]')?.value.trim() || '';
+    const honeypot = form.querySelector('[name="website"]')?.value || '';
+    const status   = form.querySelector('.form-status');
+    const btn      = form.querySelector('button[type="submit"]');
+    const section  = form.dataset.section || 'contato';
+    const buttonId = btn?.dataset.button || 'Submit Formulario';
 
     btn.disabled = true;
     status.textContent = 'Enviando...';
@@ -177,8 +178,8 @@ if (contactForm) {
     window.dataLayer.push({
       event: 'contact_form_submitted_to_whatsapp',
       event_name: 'contact_form_submitted_to_whatsapp',
-      'data-section': 'contato',
-      'data-button': 'Submit Formulario',
+      'data-section': section,
+      'data-button': buttonId,
       landing_page: window.location.pathname || '/',
       wa_intent: intent
     });
@@ -193,7 +194,7 @@ if (contactForm) {
       btn.disabled = false;
     }, 2000);
   });
-}
+});
 
 // Calendly lazy load — injeta o widget só quando a seção entra no viewport
 const calendlyWidget = document.getElementById('calendlyWidget');
