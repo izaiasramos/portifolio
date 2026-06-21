@@ -62,13 +62,20 @@ Bloco `<style>` no `<head>` (~40 linhas) cobre **hero + nav + botões** para FCP
 
 Padrão `media="print"` + `onload` — evita render-blocking.
 
-### 2.3 Fontes Google (non-blocking)
+### 2.3 Fontes — self-hosted na home (2026-06-21)
 
-- `preconnect` para `fonts.googleapis.com` e `fonts.gstatic.com`
-- `preload` + `onload` para stylesheet de fontes
-- Fallback: `system-ui` no critical CSS e `main.css`
+**Problema PSI mobile:** Google Fonts ~86 KiB + atraso de renderização do `<h1>` (~940 ms).
 
-**Cuidado:** adicionar pesos (ex.: 300, 900) aumenta download. Usar só 400–800 Inter + 400–500 Fira Code.
+| Recurso | Estratégia |
+|---------|------------|
+| Inter 400 + 800 | `assets/fonts/*.woff2` + `preload` + `fonts-inter.css` (bloqueante, ~48 KiB) |
+| Inter 600 + 700 | `fonts-inter-rest.css` deferred (`media="print"` + `onload`) |
+| Fira Code 400 | `fonts-fira.css` deferred — fora do caminho LCP |
+| Fallback mono | `ui-monospace` no critical CSS até Fira carregar |
+
+**Blog/cases:** continuam com Google Fonts non-blocking (prioridade = home).
+
+**Não reintroduzir** `fonts.googleapis.com` na home sem medir LCP mobile.
 
 ### 2.4 Google Tag Manager — lazy na home **somente**
 
