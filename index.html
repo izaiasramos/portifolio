@@ -174,32 +174,52 @@
     .hero-glow{width:600px;height:600px;background:var(--accent-glow);top:-100px;right:-150px}
     .hero-glow2{width:400px;height:400px;background:rgba(94,234,212,.12);filter:blur(80px);bottom:0;left:-100px}
     .hero-content{margin-top:30px;position:relative;z-index:1}
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(300px,380px);gap:40px;align-items:start;position:relative;z-index:1}
-    .hero-form{margin-top:30px;background:rgba(26,26,36,.85);border:1px solid var(--border);border-radius:16px;padding:24px}
-    .hero-form-title{font-size:1.05rem;font-weight:700;margin-bottom:4px}
-    .hero-form-sub{font-size:.82rem;color:var(--muted);margin-bottom:18px}
-    @media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:32px}.hero-form{margin-top:0}}
-    .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px}
-    .hero-eyebrow span{font-size:.8rem;color:var(--muted);font-family:ui-monospace,'Cascadia Code',monospace}
-    .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
-    .hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-.02em;min-height:2.64em}
-    .hero-title .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-desc{font-size:1.1rem;color:var(--muted);max-width:540px;margin-bottom:36px;line-height:1.7}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,420px);gap:48px;align-items:center;position:relative;z-index:1}
+    .hero-proof{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px;max-width:420px}
+    .hero-proof-item{padding:14px 10px;background:rgba(26,26,36,.55);border:1px solid var(--border);border-radius:12px;text-align:center}
+    .hero-proof-num{font-size:1.35rem;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-proof-label{font-size:.68rem;color:var(--muted);margin-top:6px;line-height:1.3}
     .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
-    .hero-wa-intents{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:28px}
+    .hero-wa-intents--desktop{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:28px}
     .hero-wa-label{font-size:.82rem;color:var(--muted);margin-right:4px}
-    .wa-intent-pill{display:inline-flex;align-items:center;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg3);color:var(--ink);font-size:.82rem;font-weight:600;text-decoration:none}
-    .hero-stack{margin-top:56px;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-    .hero-stack-label{font-size:.75rem;color:var(--muted);margin-right:4px}
+    .wa-intent-pill{display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;border-radius:999px;border:1px solid var(--border);background:var(--bg3);color:var(--ink);font-size:.82rem;font-weight:600;text-decoration:none}
+    .hero-mobile-cta{display:none;width:100%}
+    .hero-mobile-intents{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
+    .hero-mobile-intent{display:flex;align-items:center;justify-content:center;padding:11px 8px;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--ink);font-size:.8rem;font-weight:600;text-decoration:none;text-align:center}
+    .hero-mobile-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+    .hero-conversion{position:relative;padding:2px;border-radius:20px;background:linear-gradient(135deg,rgba(124,106,247,.85),rgba(94,234,212,.55))}
+    .hero-conversion::before{content:'';position:absolute;inset:2px;border-radius:18px;background:rgba(10,10,15,.94);z-index:0}
+    .hero-conversion-head{display:flex;align-items:center;gap:14px;padding:24px 24px 0;position:relative;z-index:1}
+    .hero-form{padding:20px 24px 24px;position:relative;z-index:1}
+    .hero-intent-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 26px;border-radius:10px;font-weight:600;font-size:.95rem;text-decoration:none;border:none;cursor:pointer}
     .btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 24px var(--accent-glow)}
+    .btn-ghost{border:1px solid var(--border);background:transparent;color:var(--ink)}
+    .btn-wa-hero{width:100%;justify-content:center;padding:16px 24px;font-size:1rem;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 8px 32px rgba(37,211,102,.28)}
     .contact-form{display:flex;flex-direction:column;gap:16px}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .form-field{display:flex;flex-direction:column;gap:6px}
     .form-field label{font-size:.82rem;font-weight:600;color:var(--muted)}
     .form-field input,.form-field textarea{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:11px 14px;color:var(--ink);font-size:.92rem;outline:none;width:100%;font-family:inherit}
     .form-field textarea{min-height:72px;resize:vertical}
+    @media(max-width:960px){
+      .hero-grid{grid-template-columns:1fr;gap:28px;align-items:start}
+      .hero-content{margin-top:16px}
+      .hero-proof{max-width:none}
+      .hero-proof-num{font-size:1.2rem}
+      .hero-actions,.hero-wa-intents--desktop{display:none!important}
+      .hero-mobile-cta{display:flex;flex-direction:column;align-items:stretch;gap:12px;margin-top:4px}
+      .hero-mobile-cta .btn{width:100%;justify-content:center}
+      #hero{min-height:auto;padding-bottom:48px}
+    }
+    @media(min-width:961px){.hero-conversion-details>summary{display:none}}
     @media(max-width:480px){.form-row{grid-template-columns:1fr}}
+    .hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:24px}
+    .hero-eyebrow span{font-size:.8rem;color:var(--muted);font-family:ui-monospace,'Cascadia Code',monospace}
+    .hero-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2);flex-shrink:0}
+    .hero-title{font-size:clamp(2.4rem,6vw,4rem);font-weight:800;line-height:1.1;margin-bottom:20px;letter-spacing:-.02em;min-height:2.64em}
+    .hero-title .highlight{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-desc{font-size:1.1rem;color:var(--muted);max-width:540px;margin-bottom:28px;line-height:1.7}
   </style>
   <link rel="preload" href="assets/css/main.css" as="style" />
   <link rel="stylesheet" href="assets/css/main.css" media="print" onload="this.media='all'" />
@@ -253,6 +273,7 @@
   <section id="hero">
     <div class="hero-glow"></div>
     <div class="hero-glow2"></div>
+    <div class="hero-grid-bg" aria-hidden="true"></div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
@@ -269,63 +290,155 @@
             Desenvolvedor Fullstack com foco em sites profissionais, sistemas web e automações.
             Baseado em São Paulo — entrego com agilidade, código limpo e resultado real.
           </p>
+
+          <div class="hero-proof">
+            <div class="hero-proof-item">
+              <div class="hero-proof-num">24h</div>
+              <div class="hero-proof-label">Resposta garantida</div>
+            </div>
+            <div class="hero-proof-item">
+              <div class="hero-proof-num">25+</div>
+              <div class="hero-proof-label">Projetos entregues</div>
+            </div>
+            <div class="hero-proof-item">
+              <div class="hero-proof-num">97+</div>
+              <div class="hero-proof-label">PageSpeed real</div>
+            </div>
+          </div>
+
           <div class="hero-actions">
             <a href="#projects" class="btn btn-primary" data-section="hero" data-button="Ver Projetos">
               <span>Ver projetos</span>
               <span>↓</span>
             </a>
+            <a href="#agenda" class="btn btn-ghost hero-btn-secondary" data-section="hero" data-button="Agendar Conversa">
+              Agendar 30 min grátis
+            </a>
           </div>
-          <div class="hero-wa-intents">
-            <span class="hero-wa-label">Falar no WhatsApp sobre:</span>
+
+          <div class="hero-wa-intents hero-wa-intents--desktop">
+            <span class="hero-wa-label">Ou fale direto no WhatsApp:</span>
             <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
-              data-wa-intent="site" data-section="hero" data-button="WhatsApp Site">Site profissional</a>
+              data-wa-intent="site" data-section="hero" data-button="WhatsApp Site">Site</a>
             <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
-              data-wa-intent="sistema" data-section="hero" data-button="WhatsApp Sistema">Sistema sob medida</a>
+              data-wa-intent="sistema" data-section="hero" data-button="WhatsApp Sistema">Sistema</a>
             <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="wa-intent-pill"
               data-wa-intent="automacao" data-section="hero" data-button="WhatsApp Automacao">Automação</a>
           </div>
-          <div class="hero-stack">
-            <span class="hero-stack-label mono">stack →</span>
-            <span class="tag">JavaScript</span>
-            <span class="tag">Node.js</span>
-            <span class="tag">Vue.js</span>
-            <span class="tag">TypeScript</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">AWS</span>
+
+          <div class="hero-mobile-cta">
+            <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="btn btn-wa-hero"
+              data-wa-intent="geral" data-section="hero" data-button="WhatsApp Hero Mobile">
+              <span class="btn-wa-icon" aria-hidden="true">💬</span>
+              <span>Falar no WhatsApp agora</span>
+            </a>
+            <div class="hero-mobile-intents" role="group" aria-label="WhatsApp por tipo de projeto">
+              <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="hero-mobile-intent"
+                data-wa-intent="site" data-section="hero" data-button="WhatsApp Mobile Site">Site</a>
+              <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="hero-mobile-intent"
+                data-wa-intent="sistema" data-section="hero" data-button="WhatsApp Mobile Sistema">Sistema</a>
+              <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="hero-mobile-intent"
+                data-wa-intent="automacao" data-section="hero" data-button="WhatsApp Mobile Automacao">Automação</a>
+            </div>
+            <div class="hero-mobile-row">
+              <a href="#projects" class="btn btn-ghost" data-section="hero"
+                data-button="Ver Projetos Mobile">Ver projetos</a>
+              <a href="#agenda" class="btn btn-ghost" data-section="hero"
+                data-button="Agendar Mobile">Agendar grátis</a>
+            </div>
           </div>
         </div>
 
-        <form class="contact-form hero-form" id="heroContactForm" data-section="hero" aria-label="Formulário de contato rápido">
-          <p class="hero-form-title">Fale sobre seu projeto</p>
-          <p class="hero-form-sub">Sem scroll — respondo no mesmo dia.</p>
-          <div class="form-row">
-            <div class="form-field">
-              <label for="heroFname">Nome</label>
-              <input type="text" id="heroFname" name="name" placeholder="Seu nome" required autocomplete="name" />
+        <details class="hero-conversion-details">
+          <summary class="hero-conversion-summary">
+            <span class="hero-conversion-summary-icon" aria-hidden="true">✉</span>
+            <span class="hero-conversion-summary-text">
+              <strong>Pedir orçamento gratuito</strong>
+              <small>Respondo no mesmo dia · sem compromisso</small>
+            </span>
+            <span class="hero-conversion-summary-chevron" aria-hidden="true">↓</span>
+          </summary>
+
+          <div class="hero-conversion">
+            <div class="hero-conversion-head">
+              <picture class="hero-conversion-avatar">
+                <source srcset="assets/img/minhaFoto-320w.webp" type="image/webp" />
+                <img src="assets/img/minhaFoto.jpeg" alt="" width="48" height="48" decoding="async" />
+              </picture>
+              <div>
+                <p class="hero-conversion-title">Vamos conversar sobre seu projeto</p>
+                <p class="hero-conversion-sub">Orçamento personalizado · contrato formal · código seu</p>
+              </div>
             </div>
-            <div class="form-field">
-              <label for="heroFemail">Email</label>
-              <input type="email" id="heroFemail" name="email" placeholder="seu@email.com" required autocomplete="email" />
-            </div>
+
+            <form class="contact-form hero-form" id="heroContactForm" data-section="hero"
+              aria-label="Formulário de contato rápido">
+              <fieldset class="hero-intent-fieldset">
+                <legend class="hero-intent-legend">O que você precisa?</legend>
+                <div class="hero-intent-options">
+                  <label class="hero-intent-opt">
+                    <input type="radio" name="project-type" value="site" checked />
+                    <span class="hero-intent-emoji" aria-hidden="true">🎯</span>
+                    <span>Site</span>
+                  </label>
+                  <label class="hero-intent-opt">
+                    <input type="radio" name="project-type" value="sistema" />
+                    <span class="hero-intent-emoji" aria-hidden="true">⚙</span>
+                    <span>Sistema</span>
+                  </label>
+                  <label class="hero-intent-opt">
+                    <input type="radio" name="project-type" value="automacao" />
+                    <span class="hero-intent-emoji" aria-hidden="true">🤖</span>
+                    <span>Automação</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="heroFname">Nome</label>
+                  <input type="text" id="heroFname" name="name" placeholder="Como te chamo?" required
+                    autocomplete="name" />
+                </div>
+                <div class="form-field">
+                  <label for="heroFemail">Email</label>
+                  <input type="email" id="heroFemail" name="email" placeholder="seu@email.com" required
+                    autocomplete="email" />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="heroFmsg">Mensagem</label>
+                <textarea id="heroFmsg" name="message" rows="3"
+                  placeholder="Ex.: preciso de um site para minha clínica, com WhatsApp e blog..."
+                  required></textarea>
+              </div>
+              <input type="hidden" name="subject" value="" />
+              <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off"
+                aria-hidden="true" />
+              <button type="submit" class="btn btn-primary btn-hero-submit" data-section="hero"
+                data-button="Enviar Formulario Hero">
+                <span>Enviar e abrir WhatsApp</span>
+                <span aria-hidden="true">→</span>
+              </button>
+              <p class="form-status" aria-live="polite"></p>
+            </form>
+
+            <ul class="hero-conversion-trust">
+              <li>✓ Sem spam</li>
+              <li>✓ Resposta em 24h</li>
+              <li>✓ Proposta por escrito</li>
+            </ul>
           </div>
-          <div class="form-field">
-            <label for="heroFsubject">Assunto</label>
-            <input type="text" id="heroFsubject" name="subject" placeholder="Site, sistema ou automação..." />
-          </div>
-          <div class="form-field">
-            <label for="heroFmsg">Mensagem</label>
-            <textarea id="heroFmsg" name="message" rows="3" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
-          </div>
-          <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-section="hero"
-            data-button="Enviar Formulario Hero">
-            Enviar mensagem →
-          </button>
-          <p class="form-status" aria-live="polite"></p>
-        </form>
+        </details>
       </div>
     </div>
   </section>
+  <script>
+    (function () {
+      var d = document.querySelector('.hero-conversion-details');
+      if (d && matchMedia('(min-width:961px)').matches) d.open = true;
+    })();
+  </script>
 
   <!-- ABOUT -->
   <section id="about">

@@ -150,13 +150,21 @@ document.querySelectorAll('.contact-form').forEach(function (form) {
     e.preventDefault();
     const name     = form.querySelector('[name="name"]')?.value.trim() || '';
     const email    = form.querySelector('[name="email"]')?.value.trim() || '';
-    const subject  = form.querySelector('[name="subject"]')?.value.trim() || '';
+    let subject    = form.querySelector('[name="subject"]')?.value.trim() || '';
     const msg      = form.querySelector('[name="message"]')?.value.trim() || '';
     const honeypot = form.querySelector('[name="website"]')?.value || '';
     const status   = form.querySelector('.form-status');
     const btn      = form.querySelector('button[type="submit"]');
     const section  = form.dataset.section || 'contato';
     const buttonId = btn?.dataset.button || 'Submit Formulario';
+
+    const projectType = form.querySelector('[name="project-type"]:checked')?.value;
+    const typeLabels = {
+      site: 'Site profissional',
+      sistema: 'Sistema sob medida',
+      automacao: 'Automação e consultoria',
+    };
+    if (!subject && projectType) subject = typeLabels[projectType] || projectType;
 
     btn.disabled = true;
     status.textContent = 'Enviando...';
@@ -172,7 +180,7 @@ document.querySelectorAll('.contact-form').forEach(function (form) {
       // falha silenciosa — WhatsApp garante o contato de qualquer forma
     }
 
-    const intent = typeof detectWaIntent === 'function' ? detectWaIntent(subject, msg) : 'geral';
+    const intent = projectType || (typeof detectWaIntent === 'function' ? detectWaIntent(subject, msg) : 'geral');
 
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
@@ -195,6 +203,17 @@ document.querySelectorAll('.contact-form').forEach(function (form) {
     }, 2000);
   });
 });
+
+// Hero conversion panel — sempre aberto no desktop
+const heroConversionDetails = document.querySelector('.hero-conversion-details');
+if (heroConversionDetails) {
+  const desktopMq = window.matchMedia('(min-width: 961px)');
+  const syncHeroPanel = function () {
+    heroConversionDetails.open = desktopMq.matches;
+  };
+  syncHeroPanel();
+  desktopMq.addEventListener('change', syncHeroPanel);
+}
 
 // Calendly lazy load — injeta o widget só quando a seção entra no viewport
 const calendlyWidget = document.getElementById('calendlyWidget');
