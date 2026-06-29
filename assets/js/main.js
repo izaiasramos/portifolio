@@ -215,30 +215,6 @@ if (heroConversionDetails) {
   desktopMq.addEventListener('change', syncHeroPanel);
 }
 
-// Calendly lazy load — injeta o widget só quando a seção entra no viewport
-const calendlyWidget = document.getElementById('calendlyWidget');
-if (calendlyWidget) {
-  const calObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      calObs.disconnect();
-      const url = calendlyWidget.dataset.url;
-      const loader = document.getElementById('calendlyLoader');
-      const embed = document.createElement('div');
-      embed.className = 'calendly-inline-widget';
-      embed.dataset.url = url;
-      embed.setAttribute('data-resize', 'true'); // ativa auto-resize via postMessage
-      if (loader) loader.remove();
-      calendlyWidget.appendChild(embed);
-      const script = document.createElement('script');
-      script.src = 'https://assets.calendly.com/assets/external/widget.js';
-      script.async = true;
-      document.body.appendChild(script);
-    });
-  }, { threshold: 0.1 });
-  calObs.observe(calendlyWidget);
-}
-
 // Tracking de cliques via dataLayer (mesmo padrão do datalayer-clicks.js da LP da Jéssica)
 (function () {
   const landingPage = window.location.pathname.replace(/index\.html$/, '') || '/';

@@ -186,7 +186,7 @@ Home `#projects`:
 
 | Feature | Gatilho |
 |---------|---------|
-| Calendly | `IntersectionObserver` na `#agenda` |
+| Google Calendar (agenda) | Link externo — sem iframe/script de terceiros |
 | GitHub trust preview | `IntersectionObserver` + `rootMargin: 200px` |
 | Vídeos projeto | `IntersectionObserver` threshold 0.25 |
 

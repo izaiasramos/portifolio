@@ -29,7 +29,7 @@ Se sim → mitigar ou documentar trade-off.
 | `content-visibility: auto` below-fold | `main.css` — seções `#about`…`#contact` |
 | `.htaccess` gzip + cache | raiz — deploy FTP obrigatório |
 | Vídeos `preload="none"` + IO play/pause | `#projects` + `main.js` |
-| Calendly/GitHub preview lazy | `main.js` |
+| Google Calendar agenda/GitHub preview lazy | `main.js` (GitHub preview) |
 
 ## Imagens
 

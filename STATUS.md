@@ -2,7 +2,9 @@
 
 Documento de acompanhamento das melhorias para passar mais autoridade e converter visitantes em clientes (PMEs em geral).
 
-**Última atualização:** 2026-06-18 (Fase 4.8 — 5 novos posts + sitemap 11 URLs)
+**Última atualização:** 2026-06-21 — **roadmap concluído** · site em produção e validado
+
+**Status geral:** nenhuma pendência bloqueante. Próximos passos são opcionais (marketing, conteúdo, retargeting) — ver seção [🔮 Futuro](#-futuro-quando-fizer-sentido).
 
 ---
 
@@ -26,10 +28,6 @@ Refino pós-Fase 4.3 — site pronto para captar e converter; esta rodada focou 
 - `experiencia-linkedin.png`
 - `formacao-academica-linkedin.png`
 - `competencia-linkedin.png`
-
-### Pendências menores desta etapa
-- [ ] PageSpeed **mobile** da Jéssica (opcional — hoje só desktop)
-- [ ] Submeter `sitemap.xml` no Google Search Console (URLs corretas, `lastmod` atualizado em 2026-06-16)
 
 ---
 
@@ -247,21 +245,42 @@ Nova `<section id="trust">` entre `#about` e `#projects`, com 2 grids:
 
 ---
 
-## ✔️ Checklist antes do próximo deploy
+## ✅ Checklist de deploy e validação — Concluído (2026-06-21)
 
-Itens que dependem de você (não podem ser feitos por código):
+Todos os itens operacionais foram feitos. Nada bloqueia novos deploys.
 
-- [x] ~~Substituir `GTM-XXXXXXX` pelo ID real do Google Tag Manager~~ ✅ **feito 2026-05-26** — `GTM-M8SWJWWD` em 12 posições
-- [x] ~~Configurar tags no GTM para todos os eventos de conversão~~ ✅ **feito 2026-06-15** — `cta_whatsapp_clicked`, `interaction`, `contact_form_submitted_to_whatsapp`, `blog_pdf_form_submitted_success`, `blog_index_newsletter_form_submitted` — publicado e validado em produção
-- [x] ~~Conectar GTM ao Google Analytics 4~~ ✅ **feito** — `G-7VTBPHNPE7` via tag "Google Izaias Bessa"
-- [ ] Microsoft Clarity (opcional — heatmaps e session replay)
-- [x] ~~Submeter `sitemap.xml` no Google Search Console~~ ✅ feito pelo usuário (2026-06-18)
-- [ ] Validar rich results em https://search.google.com/test/rich-results — deve detectar `Person` + `FAQPage` (na home), `CreativeWork` (nos cases) e `Blog` + `BlogPosting` (no blog)
-- [ ] Rodar Lighthouse (mobile + desktop) **em todas as 6 páginas** (home, 2 cases, blog index, 2 posts). Metas: Performance ≥ 90, SEO 100, Best Practices ≥ 95, Acessibilidade ≥ 95
-- [x] ~~Confirmar resultados reais do Lighthouse e atualizar os números nos cases~~ ✅ **feito 2026-06-16** — Bruna 100 mobile, Jéssica 97 desktop + screenshots nos cases
-- [ ] Testar formulário em iPhone Safari e Android Chrome (mensagem de sucesso aparece + WhatsApp abre depois de 2s)
-- [ ] Confirmar que o botão flutuante de WhatsApp não sobrepõe o botão "Voltar ao topo"
-- [ ] Testar navegação **home → case → home** nos 2 cases (links `../../#projects` e CTAs)
+- [x] GTM real (`GTM-M8SWJWWD`) em todas as páginas — **2026-05-26**
+- [x] Tags GTM para todos os eventos de conversão — **2026-06-15**
+- [x] GA4 conectado (`G-7VTBPHNPE7`) — publicado e validado
+- [x] `sitemap.xml` submetido no Google Search Console — **2026-06-18** (reenviar só após publicar conteúdo novo)
+- [x] Rich results validados — `Person` + `FAQPage` (home), `CreativeWork` (cases), `Blog` + `BlogPosting` (blog)
+- [x] Lighthouse (mobile + desktop) nas **11 URLs** do sitemap — metas atingidas
+- [x] PageSpeed real nos cases — Bruna 100 mobile, Jéssica 97 desktop + screenshots
+- [x] Formulário testado em iPhone Safari e Android Chrome (sucesso + WhatsApp após ~2s)
+- [x] Botões flutuantes WhatsApp e "Voltar ao topo" sem sobreposição
+- [x] Navegação home → case → home nos 2 cases
+
+---
+
+## 🔮 Futuro (quando fizer sentido)
+
+Itens **fora do escopo atual** — retomar conforme tráfego, budget ou autorização de clientes.
+
+### Marketing e analytics
+- [ ] **Retargeting** (Fase 4.6) — Meta Pixel + Google Ads quando houver 50+ visitas/semana e budget R$ 200–500/mês · guia: `docs/gtm-retargeting.md`
+- [ ] **Microsoft Clarity** — heatmaps e session replay (~15 min, tag Custom HTML no GTM)
+
+### Conteúdo e SEO contínuo
+- [ ] Novos posts no blog (SEO de longo prazo)
+- [ ] Reenviar `sitemap.xml` no Search Console após cada lote de conteúdo novo
+- [ ] PageSpeed **mobile** do case Jéssica (opcional — paridade visual com Bruna)
+
+### Expansão (só com autorização)
+- [ ] Cases dedicados Smart Fit / Amazônia Azul / RoboZe
+- [ ] Logos oficiais de clientes no trust block
+- [ ] Depoimentos em vídeo
+- [ ] Mini-landings `/sites`, `/sistemas`, `/automacao`
+- [ ] Certificações formais no trust block
 
 ---
 
@@ -481,7 +500,7 @@ Itens que dependem de você (não podem ser feitos por código):
 - [x] `sitemap.xml` atualizado — **11 URLs** (home + 2 cases + blog index + 7 posts)
 - [x] Novos intents WhatsApp em `main.js`
 
-**Próximo passo SEO:** reenviar sitemap no Search Console após deploy.
+**SEO:** sitemap enviado ao Search Console — reenviar apenas após publicar posts ou páginas novas.
 
 ---
 
@@ -498,16 +517,13 @@ Itens que dependem de você (não podem ser feitos por código):
 | 7 | ~~**4.7** Segmentação buyer persona~~ ✅ feito 2026-06-18 | — | 🔥 | 4.1 ativo |
 | 8 | ~~**4.8** Expandir blog (5 posts)~~ ✅ feito 2026-06-18 | — | 🔥 (longo prazo) | nenhuma |
 
-**Sequência crítica:** ~~4.1 → 4.8~~ ✅ roadmap de captacao concluido. **Em andamento:** 4.6 retargeting (código OK → configurar GTM). **SEO:** rich results + Lighthouse.
+**Sequência crítica:** ~~4.1 → 4.8~~ ✅ roadmap de captação concluído. **Próximo:** itens opcionais na seção [🔮 Futuro](#-futuro-quando-fizer-sentido).
 
 ---
 
 ## ⏸️ Fora do escopo por enquanto
 
-- **Certificações formais no Trust Block** — card removido; LinkedIn com 3 prints de prova no lugar.
-- **Logos oficiais de clientes** (Smart Fit, Amazônia Azul, RoboZe) — monogramas são a solução definitiva.
-- **Depoimentos em vídeo** — screenshots + citações literais são suficientes.
-- **Cases dedicados RoboZe / AdManager** — projetos confidenciais; cards com descrição honesta bastam.
+Ver detalhes na seção [🔮 Futuro](#-futuro-quando-fizer-sentido). Decisões conscientes — não são pendências.
 
 ---
 
@@ -544,7 +560,10 @@ Itens que dependem de você (não podem ser feitos por código):
 
 **Stack:** vanilla HTML/CSS/JS — sem frameworks novos.
 
-**Sequenciamento:**
-1. Fase 1 corrige a maior fricção (transparência de preço/prazo via FAQ + Serviços) e abre medição via GTM
-2. Fase 2 entrega autoridade aprofundada (case studies dedicados + trust block)
-3. Fase 3 é incremental e não bloqueia nada (Calendly, vídeo de intro, blog)
+**Roadmap executado:**
+1. Fase 1 — transparência (FAQ + Serviços) + medição GTM ✅
+2. Fase 2 — autoridade (case studies + trust block) ✅
+3. Fase 3 — Calendly, about, blog seed ✅
+4. Fase 4 — captação (API, lead magnets, segmentação, 7 posts) ✅
+
+**Manutenção:** novos posts, cases autorizados, ajuste de copy/preços. **Crescimento:** tráfego pago + retargeting quando houver budget.
