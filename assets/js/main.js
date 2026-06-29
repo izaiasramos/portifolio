@@ -71,6 +71,70 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// Scroll progress + nav state + scroll-to-top (single rAF loop)
+(function () {
+  const scrollProgress = document.getElementById('scrollProgress');
+  const scrollTopBtn = document.getElementById('scrollTop');
+  const nav = document.querySelector('nav');
+  let ticking = false;
+
+  function onScroll() {
+    const scrollY = window.scrollY;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollProgress && docHeight > 0) {
+      scrollProgress.style.transform = `scaleX(${scrollY / docHeight})`;
+    }
+    if (nav) nav.classList.toggle('nav-scrolled', scrollY > 60);
+    if (scrollTopBtn) scrollTopBtn.classList.toggle('visible', scrollY > 400);
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!ticking) {
+      requestAnimationFrame(onScroll);
+      ticking = true;
+    }
+  }, { passive: true });
+  onScroll();
+
+  if (scrollTopBtn) {
+    scrollTopBtn.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+})();
+
+// Contador animado — stats e proof bar (1x ao entrar na viewport)
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.value);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    if (Number.isNaN(target)) return;
+    const duration = 1200;
+    const start = performance.now();
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = prefix + Math.round(target * eased) + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      animateCount(e.target);
+      countObserver.unobserve(e.target);
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+})();
+
 // Lazy play/pause de vídeos — só toca quando o card está visível na tela
 const videoObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => {
@@ -131,17 +195,6 @@ if (sections.length && navAnchors.length) {
     });
   }, { rootMargin: '-40% 0px -55% 0px' });
   sections.forEach(s => navObserver.observe(s));
-}
-
-// Scroll to top
-const scrollTopBtn = document.getElementById('scrollTop');
-if (scrollTopBtn) {
-  window.addEventListener('scroll', function () {
-    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
-  });
-  scrollTopBtn.addEventListener('click', function () {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
 }
 
 // Form — persiste via Vercel API, dispara eventos GTM, depois redireciona p/ WhatsApp

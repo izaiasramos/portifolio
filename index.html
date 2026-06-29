@@ -228,6 +228,8 @@
 
 <body>
 
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
   <!-- Mobile Nav Overlay -->
   <div class="mobile-nav" id="mobileNav" aria-hidden="true" inert>
     <ul>
@@ -293,15 +295,15 @@
 
           <div class="hero-proof">
             <div class="hero-proof-item">
-              <div class="hero-proof-num">24h</div>
+              <div class="hero-proof-num count-up" data-value="24" data-suffix="h">24h</div>
               <div class="hero-proof-label">Resposta garantida</div>
             </div>
             <div class="hero-proof-item">
-              <div class="hero-proof-num">25+</div>
+              <div class="hero-proof-num count-up" data-value="25" data-suffix="+">25+</div>
               <div class="hero-proof-label">Projetos entregues</div>
             </div>
             <div class="hero-proof-item">
-              <div class="hero-proof-num">97+</div>
+              <div class="hero-proof-num count-up" data-value="97" data-suffix="+">97+</div>
               <div class="hero-proof-label">PageSpeed real</div>
             </div>
           </div>
@@ -469,8 +471,10 @@
 
         <!-- Texto -->
         <div class="about-text">
-          <p class="tag accent" style="margin-bottom:16px">Sobre mim</p>
-          <h2 class="section-title" style="margin-bottom:20px">Desenvolvedor que entrega, não só codifica</h2>
+          <div class="section-header section-header--compact reveal">
+            <p class="tag accent">Sobre mim</p>
+            <h2 class="section-title">Desenvolvedor que entrega, não só codifica</h2>
+          </div>
           <p>
             Sou <strong>Izaias Ramos</strong>, desenvolvedor Fullstack de São Paulo com
             <strong>2 anos de experiência</strong> prática em projetos reais.
@@ -486,13 +490,13 @@
             Disciplinado, rápido em aprender tecnologias novas e comprometido com
             código limpo, boas práticas e entrega no prazo.
           </p>
-          <div style="margin-top:24px; display:flex; gap:12px; flex-wrap:wrap">
-            <a href="https://github.com/izaiasramos" target="_blank" rel="noopener" class="btn btn-ghost"
-              style="padding:9px 18px;font-size:.85rem" data-section="sobre" data-button="GitHub">
+          <div class="about-actions">
+            <a href="https://github.com/izaiasramos" target="_blank" rel="noopener" class="btn btn-ghost btn-sm"
+              data-section="sobre" data-button="GitHub">
               GitHub →
             </a>
             <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
-              class="btn btn-ghost" style="padding:9px 18px;font-size:.85rem" data-section="sobre"
+              class="btn btn-ghost btn-sm" data-section="sobre"
               data-button="LinkedIn">
               LinkedIn →
             </a>
@@ -501,20 +505,20 @@
 
         <!-- Stats -->
         <div class="about-stats">
-          <div class="stat-card">
-            <div class="stat-num">2+</div>
+          <div class="stat-card reveal">
+            <div class="stat-num count-up" data-value="2" data-suffix="+">2+</div>
             <div class="stat-label">Anos atuando</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-num">25+</div>
+          <div class="stat-card reveal">
+            <div class="stat-num count-up" data-value="25" data-suffix="+">25+</div>
             <div class="stat-label">Projetos entregues</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-num">10+</div>
+          <div class="stat-card reveal">
+            <div class="stat-num count-up" data-value="10" data-suffix="+">10+</div>
             <div class="stat-label">Tecnologias no stack</div>
           </div>
-          <div class="stat-card">
-            <div class="stat-num">24h</div>
+          <div class="stat-card reveal">
+            <div class="stat-num count-up" data-value="24" data-suffix="h">24h</div>
             <div class="stat-label">Resposta em até 24h</div>
           </div>
         </div>
@@ -526,34 +530,34 @@
   <!-- TRUST BLOCK -->
   <section id="trust">
     <div class="container">
-      <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto 48px">
-        <p class="tag accent" style="margin-bottom:12px">Confiança</p>
+      <div class="section-header section-header--center section-header--narrow section-header--no-sub reveal">
+        <p class="tag accent">Confiança</p>
         <h2 class="section-title">Quem confiou no meu trabalho</h2>
-        <p class="section-sub" style="margin-bottom:0">
+        <p class="section-sub">
           Empresas, instituições e profissionais que já receberam entregas minhas.
         </p>
       </div>
 
-      <div class="trust-clients reveal">
-        <div class="trust-client-card">
+      <div class="trust-clients">
+        <div class="trust-client-card reveal">
           <div class="client-mark client-mark--smartfit" aria-hidden="true">SF</div>
           <div class="trust-client-name">Smart Fit</div>
           <div class="trust-client-stat">LPs responsivas · GTM + GA</div>
           <div class="trust-client-tag">Via Wv_todoz · em produção contínua</div>
         </div>
-        <div class="trust-client-card">
+        <div class="trust-client-card reveal">
           <div class="client-mark client-mark--amazonia" aria-hidden="true">AA</div>
           <div class="trust-client-name">Amazônia Azul Tecnologias de Defesa</div>
           <div class="trust-client-stat">Frontend completo · testes aprovados</div>
           <div class="trust-client-tag">Sistema de votação · concluído 2023</div>
         </div>
-        <div class="trust-client-card">
+        <div class="trust-client-card reveal">
           <div class="client-mark client-mark--psi" aria-hidden="true">2+</div>
           <div class="trust-client-name">Psicólogas independentes</div>
           <div class="trust-client-stat">PageSpeed 97–100 · 2 sites ao vivo</div>
           <div class="trust-client-tag">Cases verificáveis · depoimentos reais</div>
         </div>
-        <div class="trust-client-card">
+        <div class="trust-client-card reveal">
           <div class="client-mark client-mark--robozee" aria-hidden="true">RZ</div>
           <div class="trust-client-name">SaaS de captação</div>
           <div class="trust-client-stat">Dev principal · LinkedIn API</div>
@@ -585,59 +589,73 @@
         </div>
 
         <div class="trust-meta-card trust-meta-card--linkedin">
-          <p class="trust-meta-title">LinkedIn ativo</p>
-          <p class="trust-meta-desc">
-            Trajetória profissional, formação e competências — verificável no perfil.
-          </p>
+          <div class="trust-linkedin-head">
+            <p class="trust-meta-title">LinkedIn ativo</p>
+            <p class="trust-meta-desc">
+              Trajetória profissional, formação e competências — verificável no perfil.
+            </p>
+          </div>
           <div class="trust-linkedin-gallery">
-            <figure class="trust-linkedin-shot">
-              <figcaption>Experiência</figcaption>
+            <article class="trust-li-card reveal">
+              <div class="trust-li-card-head">
+                <span class="trust-li-card-icon" aria-hidden="true">💼</span>
+                <h4 class="trust-li-card-title">Experiência</h4>
+              </div>
               <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
-                class="trust-proof-link" data-section="trust" data-button="LinkedIn Experiencia"
+                class="trust-li-card-media trust-proof-link" data-section="trust" data-button="LinkedIn Experiencia"
                 aria-label="Ver seção Experiência no LinkedIn de Izaias Ramos">
                 <picture>
                   <source
                     srcset="assets/img/experiencia-linkedin-480w.webp 480w, assets/img/experiencia-linkedin-540w.webp 540w, assets/img/experiencia-linkedin-768w.webp 768w, assets/img/experiencia-linkedin-1020w.webp 1020w"
-                    sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), 872px"
+                    sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), (max-width: 1100px) min(calc(50vw - 80px), 420px), 320px"
                     type="image/webp" />
                   <img src="assets/img/experiencia-linkedin.png"
                     alt="Print da seção Experiência do LinkedIn — Let's Work, Amazônia Azul e Marinha do Brasil"
                     class="trust-proof-img" loading="lazy" fetchpriority="low" width="1020" height="873" decoding="async">
                 </picture>
+                <span class="trust-li-card-overlay">Ver no LinkedIn ↗</span>
               </a>
-            </figure>
-            <figure class="trust-linkedin-shot">
-              <figcaption>Formação acadêmica</figcaption>
+            </article>
+            <article class="trust-li-card reveal">
+              <div class="trust-li-card-head">
+                <span class="trust-li-card-icon" aria-hidden="true">🎓</span>
+                <h4 class="trust-li-card-title">Formação</h4>
+              </div>
               <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
-                class="trust-proof-link" data-section="trust" data-button="LinkedIn Formacao"
+                class="trust-li-card-media trust-proof-link" data-section="trust" data-button="LinkedIn Formacao"
                 aria-label="Ver formação acadêmica no LinkedIn de Izaias Ramos">
                 <picture>
                   <source
                     srcset="assets/img/formacao-academica-linkedin-480w.webp 480w, assets/img/formacao-academica-linkedin-540w.webp 540w, assets/img/formacao-academica-linkedin-768w.webp 768w, assets/img/formacao-academica-linkedin-1020w.webp 1020w"
-                    sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), 872px"
+                    sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), (max-width: 1100px) min(calc(50vw - 80px), 420px), 320px"
                     type="image/webp" />
                   <img src="assets/img/formacao-academica-linkedin.png"
                     alt="Print da formação acadêmica no LinkedIn — Estácio, Instituto Master, B7Web e Senai"
                     class="trust-proof-img" loading="lazy" fetchpriority="low" width="1020" height="873" decoding="async">
                 </picture>
+                <span class="trust-li-card-overlay">Ver no LinkedIn ↗</span>
               </a>
-            </figure>
-            <figure class="trust-linkedin-shot">
-              <figcaption>Competências</figcaption>
+            </article>
+            <article class="trust-li-card reveal">
+              <div class="trust-li-card-head">
+                <span class="trust-li-card-icon" aria-hidden="true">⚡</span>
+                <h4 class="trust-li-card-title">Competências</h4>
+              </div>
               <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
-                class="trust-proof-link" data-section="trust" data-button="LinkedIn Competencias"
+                class="trust-li-card-media trust-proof-link" data-section="trust" data-button="LinkedIn Competencias"
                 aria-label="Ver competências no LinkedIn de Izaias Ramos">
                 <picture>
                   <source
                     srcset="assets/img/competencia-linkedin-480w.webp 480w, assets/img/competencia-linkedin-540w.webp 540w, assets/img/competencia-linkedin-768w.webp 768w, assets/img/competencia-linkedin-1020w.webp 1020w"
-                    sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), 872px"
+                    sizes="(max-width: 680px) min(calc(100vw - 104px), 872px), (max-width: 1100px) min(calc(50vw - 80px), 420px), 320px"
                     type="image/webp" />
                   <img src="assets/img/competencia-linkedin.png"
                     alt="Print das competências no LinkedIn — Vue.js, responsividade, trabalho em equipe e mais"
                     class="trust-proof-img" loading="lazy" fetchpriority="low" width="1020" height="873" decoding="async">
                 </picture>
+                <span class="trust-li-card-overlay">Ver no LinkedIn ↗</span>
               </a>
-            </figure>
+            </article>
           </div>
           <div class="trust-meta-tags">
             <a href="https://www.linkedin.com/in/izaias-ramosdesenvolvedor" target="_blank" rel="noopener"
@@ -653,8 +671,8 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
-      <div class="reveal">
-        <p class="tag teal" style="margin-bottom:12px">Portfólio</p>
+      <div class="section-header reveal">
+        <p class="tag teal">Portfólio</p>
         <h2 class="section-title">Projetos que entreguei</h2>
         <p class="section-sub">Sites e sistemas construídos do zero ou modernizados.</p>
       </div>
@@ -822,8 +840,8 @@
   <!-- SERVICES -->
   <section id="services">
     <div class="container">
-      <div class="reveal">
-        <p class="tag accent" style="margin-bottom:12px">Como posso te ajudar</p>
+      <div class="section-header reveal">
+        <p class="tag accent">Como posso te ajudar</p>
         <h2 class="section-title">Serviços e pacotes</h2>
         <p class="section-sub">Soluções pensadas para pequenos negócios que precisam de presença digital sólida
           e processos automatizados.</p>
@@ -831,9 +849,12 @@
       <div class="services-grid">
 
         <div class="service-card reveal">
-          <div class="service-icon">🎯</div>
+          <div class="service-icon" aria-hidden="true">🎯</div>
           <h3 class="service-name">Site Profissional</h3>
-          <div class="service-price">a partir de R$ 450</div>
+          <div class="service-price">
+            <span class="service-price-from">a partir de</span>
+            <span class="service-price-value">R$ 450</span>
+          </div>
           <p class="service-desc">
             Landing page ou site institucional otimizado para conversão, com SEO técnico incluído.
             Ideal para profissionais autônomos e pequenos negócios que precisam de presença digital com credibilidade.
@@ -857,9 +878,12 @@
 
         <div class="service-card featured reveal">
           <div class="service-card-badge">Mais procurado</div>
-          <div class="service-icon">🛠️</div>
+          <div class="service-icon" aria-hidden="true">🛠️</div>
           <h3 class="service-name">Sistema Web Sob Medida</h3>
-          <div class="service-price">orçamento personalizado</div>
+          <div class="service-price">
+            <span class="service-price-from">investimento</span>
+            <span class="service-price-value">sob medida</span>
+          </div>
           <p class="service-desc">
             Aplicações web completas: dashboards, áreas administrativas, CRMs simples, painéis de gestão.
             Construído com tecnologias modernas e arquitetura preparada para crescer.
@@ -882,9 +906,12 @@
         </div>
 
         <div class="service-card reveal">
-          <div class="service-icon">🤖</div>
+          <div class="service-icon" aria-hidden="true">🤖</div>
           <h3 class="service-name">Automação & Consultoria</h3>
-          <div class="service-price">por hora ou pacote</div>
+          <div class="service-price">
+            <span class="service-price-from">modelo</span>
+            <span class="service-price-value">hora ou pacote</span>
+          </div>
           <p class="service-desc">
             Automatize tarefas repetitivas, integre sistemas e ganhe horas de volta no seu dia.
             Ideal para empresas que perdem tempo com processos manuais entre planilhas, e-mails e ferramentas.
@@ -913,8 +940,8 @@
   <!-- AGENDA -->
   <section id="agenda">
     <div class="container">
-      <div class="reveal" style="text-align:center">
-        <p class="tag accent" style="margin-bottom:12px">Sem compromisso</p>
+      <div class="section-header section-header--center reveal">
+        <p class="tag accent">Sem compromisso</p>
         <h2 class="section-title">Agende uma conversa grátis</h2>
         <p class="section-sub">30 minutos para entender o seu projeto e ver como posso ajudar. Sem enrolação, sem
           pressão.</p>
@@ -951,8 +978,8 @@
   <!-- SKILLS -->
   <section id="skills">
     <div class="container">
-      <div class="reveal">
-        <p class="tag accent" style="margin-bottom:12px">Tecnologias</p>
+      <div class="section-header reveal">
+        <p class="tag accent">Tecnologias</p>
         <h2 class="section-title">Stack & Ferramentas</h2>
         <p class="section-sub">O que uso no dia a dia para construir e entregar.</p>
       </div>
@@ -1028,9 +1055,9 @@
 
   <!-- EXPERIENCE -->
   <section id="experience">
-    <div class="container" style="position:relative;z-index:1">
-      <div class="reveal">
-        <p class="tag teal" style="margin-bottom:12px">Trajetória</p>
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="tag teal">Trajetória</p>
         <h2 class="section-title">Experiência Profissional</h2>
         <p class="section-sub">De sistemas militares a grandes marcas do varejo.</p>
       </div>
@@ -1041,13 +1068,13 @@
           <div class="timeline-role">Programador Fullstack</div>
           <div class="timeline-company">Wv_todoz — Empresa de Tecnologia · São Paulo, SP</div>
           <ul class="timeline-bullets">
-            <li>Responsável pelos projetos <strong style="color:var(--ink)">Smart Fit</strong>: landing pages
+            <li>Responsável pelos projetos <strong>Smart Fit</strong>: landing pages
               responsivas integradas com APIs, validações e boas práticas front-end</li>
             <li>Integração de APIs externas para validação de dados e sistemas terceiros</li>
-            <li>Configuração de <strong style="color:var(--ink)">GTM e Google Analytics</strong> para rastreamento de
+            <li>Configuração de <strong>GTM e Google Analytics</strong> para rastreamento de
               eventos</li>
-            <li>Deploy e gerenciamento de arquivos em <strong style="color:var(--ink)">AWS S3</strong></li>
-            <li>Desenvolvimento de feature complexa: integração com <strong style="color:var(--ink)">LinkedIn
+            <li>Deploy e gerenciamento de arquivos em <strong>AWS S3</strong></li>
+            <li>Desenvolvimento de feature complexa: integração com <strong>LinkedIn
                 API</strong> para gerenciamento de mensagens dentro do sistema RoboZe</li>
             <li>Promovido a responsável pelo frontend por destaque em migração de framework</li>
           </ul>
@@ -1071,8 +1098,8 @@
   <!-- TESTIMONIALS -->
   <section id="testimonials">
     <div class="container">
-      <div class="reveal">
-        <p class="tag teal" style="margin-bottom:12px">Depoimentos</p>
+      <div class="section-header reveal">
+        <p class="tag teal">Depoimentos</p>
         <h2 class="section-title">O que dizem os clientes</h2>
         <p class="section-sub">Feedback real de quem trabalhou comigo — citações literais do WhatsApp e métricas verificáveis do projeto.</p>
       </div>
@@ -1139,10 +1166,10 @@
   <!-- FAQ -->
   <section id="faq">
     <div class="container">
-      <div class="reveal" style="text-align:center;margin-bottom:36px">
-        <p class="tag accent" style="margin-bottom:12px;display:inline-block">Tire suas dúvidas</p>
+      <div class="section-header section-header--faq reveal">
+        <p class="tag accent">Tire suas dúvidas</p>
         <h2 class="section-title">Perguntas frequentes</h2>
-        <p class="section-sub" style="margin:0 auto;max-width:640px">Respostas diretas para as dúvidas mais comuns antes
+        <p class="section-sub">Respostas diretas para as dúvidas mais comuns antes
           de iniciar um projeto.</p>
       </div>
 
@@ -1238,7 +1265,7 @@
 
       </div>
 
-      <div style="text-align:center;margin-top:36px">
+      <div class="faq-cta">
         <a href="https://wa.me/5511998110569" target="_blank" rel="noopener" class="btn btn-primary"
           data-wa-intent="faq" data-section="faq" data-button="Tirar Duvida WhatsApp">
           <span>💬</span>
@@ -1253,8 +1280,10 @@
     <div class="container">
       <div class="contact-grid">
         <div class="contact-info reveal">
-          <p class="tag accent" style="margin-bottom:16px">Contato</p>
-          <h2 class="section-title" style="margin-bottom:16px">Vamos construir algo juntos?</h2>
+          <div class="section-header section-header--compact">
+            <p class="tag accent">Contato</p>
+            <h2 class="section-title">Vamos construir algo juntos?</h2>
+          </div>
           <p>
             Estou disponível para projetos de site, sistema web, automação ou consultoria técnica.
             Me chame pelo WhatsApp para uma conversa rápida — respondo no mesmo dia.
@@ -1272,14 +1301,14 @@
               data-wa-intent="geral" data-section="contato" data-button="WhatsApp">
               <span class="contact-link-icon">💬</span>
               <div>
-                <div style="font-size:.78rem;color:var(--muted)">WhatsApp</div>
+                <div class="contact-link-label">WhatsApp</div>
                 <div>(11) 99811-0569</div>
               </div>
             </a>
             <a href="mailto:izaiasr232@gmail.com" class="contact-link" data-section="contato" data-button="Email">
               <span class="contact-link-icon">✉️</span>
               <div>
-                <div style="font-size:.78rem;color:var(--muted)">Email</div>
+                <div class="contact-link-label">Email</div>
                 <div>izaiasr232@gmail.com</div>
               </div>
             </a>
@@ -1287,7 +1316,7 @@
               data-section="contato" data-button="GitHub">
               <span class="contact-link-icon">🐙</span>
               <div>
-                <div style="font-size:.78rem;color:var(--muted)">GitHub</div>
+                <div class="contact-link-label">GitHub</div>
                 <div>github.com/izaiasramos</div>
               </div>
             </a>
@@ -1295,7 +1324,7 @@
               class="contact-link" data-section="contato" data-button="LinkedIn">
               <span class="contact-link-icon">💼</span>
               <div>
-                <div style="font-size:.78rem;color:var(--muted)">LinkedIn</div>
+                <div class="contact-link-label">LinkedIn</div>
                 <div>izaias-ramosdesenvolvedor</div>
               </div>
             </a>
@@ -1322,7 +1351,7 @@
             <textarea id="fmsg" name="message" rows="5" placeholder="Conte um pouco sobre seu projeto..." required></textarea>
           </div>
           <input type="text" name="website" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true" />
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center" data-section="contato"
+          <button type="submit" class="btn btn-primary btn-block" data-section="contato"
             data-button="Enviar Formulario">
             Enviar mensagem →
           </button>
